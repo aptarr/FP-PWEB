@@ -29,6 +29,7 @@ class UserFactory extends Factory
             'description' => fake()->paragraph(),
             'occupation' => fake()->jobTitle(),
             'isAdmin' => 0,
+            'isSeller' => 1,
         ];
     }
 

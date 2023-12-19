@@ -25,6 +25,7 @@ class User extends Authenticatable
         'occupation',
         'user_privilege',
         'isAdmin',
+        'isSeller',
         'image',
     ];
 

@@ -30,15 +30,18 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'description' => ['nullable', 'string', 'max:500'],
             'occupation' => ['nullable', 'string', 'max:50'],
+            'isSeller' => ['nullable'],
            // 'user_privilege' => ['required', 'string', Rule::in(['admin', 'seller', 'buyer'])],
         ]);
 
+  
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -46,7 +49,10 @@ class RegisteredUserController extends Controller
             'description' => $request->description,
             'occupation' => $request->occupation,
             'isAdmin' => 0,
+            'isSeller' => $request->user_type,
         ]);
+
+        
 
         event(new Registered($user));
 

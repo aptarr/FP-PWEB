@@ -20,20 +20,12 @@ class TransactionFactory extends Factory
             'cancelled',
             'pending',
             'completed',
-            'active',
-        ];
-
-        $package = [
-            'basic',
-            'standard',
-            'premium',
         ];
         
         return [
             'quantity' => fake()->numberBetween(1,10),
             'status' => fake()->randomElement($status),
-            'package' => fake()->randomElement($package),
-            'deliverable' => fake()->text(10),
+            'harga_total' => fake()->numberBetween(500000,1000000),
             'user_id' => fake()->numberBetween(1,100),
             'isReview' => fake()->randomElement([true, false]),
             'service_id' => fake()->numberBetween(1,150),

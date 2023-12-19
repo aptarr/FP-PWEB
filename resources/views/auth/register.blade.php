@@ -39,6 +39,21 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+        <!-- User Type (Buyer or Seller) -->
+        <div class="mt-4">
+            <x-input-label for="user_type" :value="__('User Type')" />
+            <div class="mt-1">
+                <label class="inline-flex items-center">
+                    <input type="radio" name="user_type" value="0" checked class="form-radio" />
+                    <span class="ml-2">{{ __('Pencari Kos') }}</span>
+                </label>
+                <label class="inline-flex items-center ml-6">
+                    <input type="radio" name="user_type" value="1" class="form-radio" />
+                    <span class="ml-2">{{ __('Penyewa Kos') }}</span>
+                </label>
+            </div>
+        </div>
+
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
