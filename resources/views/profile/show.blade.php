@@ -168,7 +168,7 @@
 
 
 
-
+                @if(auth()->user()->isSeller)
                 <div class="flex-col w-3/5 m-8 bg-white border border-gray-300">
                     <div class="flex justify-center align-middle font-semibold text-3xl p-4">
                         <div>
@@ -240,6 +240,7 @@
                         @endforeach
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>

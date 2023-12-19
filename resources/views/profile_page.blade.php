@@ -44,73 +44,7 @@
                                     </div>
                                 </div>
                             </div>
-                        <!-- <div class="flex-col align-center my-5">
-                            <div class="flex font-semibold">
-                                <div class="w-1/2 text-left">
-                                    <h3>Languages</h3>
-                                </div>
-                            </div>
-                            @foreach($languages as $language)
-                                <div class="flex my-2">
-                                        <div class="w-3/4 flex text-left">
-                                            <p>{{ $language->language }}</p>
-                                            <p class="text-gray-600 italic">|{{ $language->language_level }}</p>
-                                        </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="flex-col align-center my-5">
-                            <div class="flex font-semibold">
-                                <div class="w-1/2 text-left">
-                                    <h3>Skills</h3>
-                                </div>
-                            </div>
-                            @foreach($skills as $skill)
-                                <div class="flex my-2">
-                                        <div class="w-3/4 flex text-left">
-                                            <p>{{ $skill->skill }}</p>
-                                            <p class="text-gray-600 italic">|{{ $skill->experience_level }}</p>
-                                        </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="flex-col align-center my-5">
-                            <div class="flex font-semibold">
-                                <div class="w-1/2 text-left">
-                                    <h3>Education</h3>
-                                </div>
-                            </div>
-                            @foreach($educations as $education)
-                                <div class="flex my-2">
-                                        <div class="w-3/4 flex text-left">
-                                            <div class="flex-col">
-                                                <div>
-                                                    <p> {{ $education->country_of_college }} ({{ $education->year }})</p>
-                                                </div>
-                                                <div class="flex">
-                                                    <p>{{ $education->major }}</p>
-                                                    <p class="text-gray-600 italic">|{{ $education->title }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="flex-col align-center my-5">
-                            <div class="flex font-semibold">
-                                <div class="w-1/2 text-left">
-                                    <h3>Certification</h3>
-                                </div>
-                            </div>
-                            @foreach($certifications as $certification)
-                                <div class="flex my-2">
-                                        <div class="w-3/4 flex text-left">
-                                            <p>{{ $certification->certificate_name }}</p>
-                                            <p class="text-gray-600 italic">|{{ $certification->certification_from }}</p>
-                                        </div>
-                                </div>
-                            @endforeach
-                        </div> -->
+    
                     </div>
 
                 </div>

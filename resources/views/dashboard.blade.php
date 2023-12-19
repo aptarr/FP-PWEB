@@ -131,7 +131,7 @@
             <div class="container mx-auto text-center text-3xl font-bold text-gray-700">Area Kos Populer</div>
             <div class="container mx-auto flex flex-wrap items-center my-16">
                 <div class="w-full max-w-sm bg-white overflow-hidden lg:w-1/4 p-3 pr-0">
-                    <a href="#" class="block relative h-50 w-full group">
+                    <a  href="{{ route('subcategory.show', ['subcategory' => 'Jakarta', 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}" class="block relative h-50 w-full group">
                         <div
                             class="absolute inset-0 bg-black opacity-0 group-hover:opacity-60 transition-opacity rounded-md">
                         </div>
@@ -181,18 +181,18 @@
             </div>
         </div>
 
-        <div class="bg-white py-8 w-330 mx-auto font-semibold text-3xl text-gray-800 leading-tight">
+        <div class="bg-white py-8 w-10/12 mx-auto font-semibold text-3xl text-gray-800 leading-tight">
             Selamat datang, {{ Auth::user()->name }}!
         </div>
 
-        <div class="bg-white mt-4 w-330 mx-auto font-semibold text-2xl text-gray-800 leading-tight flex">
+        <div class="bg-white mt-4 w-10/12 mx-auto font-semibold text-2xl text-gray-800 leading-tight flex">
             Kos rekomendasi di
             <div class="ml-1 text-blue-600">
                 {{$randomSubcategory->subcategory_name}}
             </div>
         </div>
 
-        <div id="default-carousel" class="relative w-330 mx-auto py-4">
+        <div id="default-carousel" class="relative w-10/12 mx-auto py-4">
             <!-- Carousel wrapper -->
             <div class="relative h-56 overflow-hidden rounded-lg md:h-96 border border-gray-300">
                 <!-- Item 1 -->
@@ -286,11 +286,11 @@
                 </div>
             </div>
 
-            <div class="bg-white mt-4 w-330 mx-auto font-semibold text-2xl text-gray-800 leading-tight flex">
+            <div class="bg-white mt-4 w-10/12 mx-auto font-semibold text-2xl text-gray-800 leading-tight flex">
                 All Gigs
             </div>
 
-            <div class="w-330 mx-auto mt-4">
+            <div class="w-10/12 mx-auto mt-4">
                 @php
                 $servicesChunks = $services->chunk(5);
                 @endphp
@@ -300,7 +300,7 @@
                     @foreach($serviceChunk as $service)
 
 
-                    <div class="w-64 h-96">
+                    <div class="w-1/12 h-96">
                         <div id="" class="relative w-full h-52">
                             <!-- Carousel wrapper -->
                             <div class="relative overflow-hidden rounded-lg md:h-52">
