@@ -34,6 +34,20 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('subcategory');
             $table->foreignId('subcategory_id')->constrained('subcategory');
         });
+
+        // Schema::create('services', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->timestamps();
+        //     $table->string('title');
+        //     $table->string('description');
+
+        //     $table->string('image')->nullable();
+        //     $table->decimal('average_star', 2, 1);
+        //     $table->foreignId('user_id')->constrained();
+
+        //     $table->foreignId('category_id')->constrained('subcategory');
+        //     $table->foreignId('subcategory_id')->constrained('subcategory');
+        // });
     }
 
     /**
