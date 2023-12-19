@@ -17,8 +17,19 @@
                     <h4 class="text-lg font-extrabold tracking-tight text-white sm:text-2xl"> dengan durasi sewa
                         fleksibel harian & bulanan</h4>
                     <div class="mt-10 flex items-center justify-center gap-x-6">
-                        <a href="#"
-                            class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cari</a>
+                    <div class="ml-5 w-4/5">
+                          
+                            <form action="{{ route('service.filter') }}" method="POST" class="flex items-center justify-center">
+                            @csrf
+                                <x-text-input id="search_bar" name="search_bar" type="text" class="mt-1 block w-11/12 " placeholder="What service are you looking for today?" />
+                                <button type="submit" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                    Cari
+                                </button>
+                            </form>
+
+                        </div>
+                        <!-- <a href="#"
+                            class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cari</a> -->
                     </div>
                 </div>
             </div>

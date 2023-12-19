@@ -208,6 +208,7 @@ class ServiceController extends Controller
     {
         $searchBar = $request->input('search_bar');
 
+        //tambah berdasrakn lokasi (subcategory)
         $services = Service::where('title', 'like', '%' . $searchBar . '%')
             ->leftJoin('users', 'services.user_id', '=', 'users.id')
             ->leftJoin('user_review', 'services.user_id', '=', 'user_review.user_id')
