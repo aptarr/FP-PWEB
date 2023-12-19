@@ -1,0 +1,1 @@
+<img src="https://www.svgrepo.com/show/396909/letter-s.svg" alt="Sixerr Logo" {{ $attributes }}/>
