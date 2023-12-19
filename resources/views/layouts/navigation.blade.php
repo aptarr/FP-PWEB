@@ -184,16 +184,10 @@
 
                 <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
                     <div class="group inline-block relative">
-                        <x-nav-link>
-                            {{ __('Graphics & Design') }}
+                        <x-nav-link href="{{ route('subcategory.show', ['subcategory' => 'Jakarta', 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}">
+                            {{ __('Jakarta') }}
                         </x-nav-link>
-                        <ul class="absolute hidden text-gray-800 bg-white border border-gray-300  space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
-                            <ul>
-
-                                    <li><a href="{{ route('subcategory.show', ['subcategory' => 'Logo & Brand Identity', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Logo & Brand Identity</a></li>
-                                    <li><a href="{{ route('subcategory.show', ['subcategory' => 'Art & Illustration', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Art & Illustration</a></li>
-                            </ul>
-                        </ul>
+                  
                     </div>
                 </div>
 
@@ -202,7 +196,7 @@
                     <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
                         <div class="group inline-block relative">
                             <x-nav-link>
-                                {{ __('Programming & Tech') }}
+                                {{ __('Bogor') }}
                             </x-nav-link>
                                 <ul class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
                                     <ul>
@@ -218,7 +212,7 @@
                     <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
                         <div class="group inline-block relative">
                             <x-nav-link>
-                                {{ __('Digital Marketing') }}
+                                {{ __('Surabaya') }}
                             </x-nav-link>
                                 <ul class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
                                     <ul>
@@ -233,7 +227,7 @@
                     <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
                         <div class="group inline-block relative">
                         <x-nav-link>
-                            {{ __('Video & Animation') }}
+                            {{ __('Bekasi') }}
                         </x-nav-link>
                                 <ul class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
                                     <ul>
@@ -250,7 +244,7 @@
                     <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
                         <div class="group inline-block relative">
                         <x-nav-link>
-                            {{ __('Writing & Translation') }}
+                            {{ __('Yogyakarta') }}
                         </x-nav-link>
                                     <ul class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
                                         <ul>
@@ -267,7 +261,7 @@
                     <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
                         <div class="group inline-block relative">
                             <x-nav-link>
-                                {{ __('Music & Audio') }}
+                                {{ __('Semarang') }}
                             </x-nav-link>
                                         <ul class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
                                             <ul>
@@ -283,7 +277,7 @@
                     <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
                         <div class="group inline-block relative">
                             <x-nav-link>
-                                {{ __('Business') }}
+                                {{ __('Depok') }}
                             </x-nav-link>
                                         <ul class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
                                             <ul>
@@ -298,7 +292,7 @@
                     <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
                         <div class="group inline-block relative">
                             <x-nav-link>
-                                {{ __('Data') }}
+                                {{ __('Bandung') }}
                             </x-nav-link>
                                         <ul class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
                                             <ul>
@@ -314,7 +308,7 @@
                     <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
                     <div class="group inline-block relative">
                         <x-nav-link>
-                            {{ __('Photography') }}
+                            {{ __('Tangerang') }}
                         </x-nav-link>
                                         <ul class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
                                             <ul>

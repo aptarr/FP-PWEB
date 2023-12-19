@@ -20,11 +20,10 @@ class ServiceFactory extends Factory
             'title' => fake()->text(30),
             'description' => fake()->text(),
             'kamar_tersedia' => fake()->numberBetween(1,10),
-            'harga_per_bulan' => fake()->numberBetween(500000,1000000),
+            'harga_per_bulan' => fake()->numberBetween(300000,1000000),
             'average_star' => 0,
             'user_id' => fake()->numberBetween(1,100),
-            'category_id' => fake()->numberBetween(1,9),
-            'subcategory_id' => fake()->numberBetween(1,18),
+            'subcategory_id' => fake()->numberBetween(1,9),
         ];
     }
 }

@@ -15,7 +15,6 @@ class Service extends Model
         'kamar_tersedia',
         'harga_per_bulan',
         'image',
-        'category_id',
         'subcategory_id',
         'average_star',
     ];

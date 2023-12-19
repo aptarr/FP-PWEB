@@ -17,7 +17,7 @@
                     {{$subcategoryModel->subcategory_name}}
                 </div>
                 <div class="mt-5 text-xl">
-                    Every gigs in the subcategory
+                    Semua kos yang ada di {{$subcategoryModel->subcategory_name}}
                 </div>
 
                 <div class="mt-10 border border-t-gray-300 w-full">
@@ -27,10 +27,10 @@
                 <div class="mt-10">
                     <div class="flex">
                         <div class="font-bold border border-gray-300 rounded-lg w-32 py-3 text-center tab inactive flex justify-center" data-tab="budget">
-                            Budget
+                            Harga
                             <svg class="ml-2 h-6 w-6 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M5.5 5h13a1 1 0 0 1 0.5 1.5L14 12L14 19L10 16L10 12L5 6.5a1 1 0 0 1 0.5 -1.5" /></svg>
                         </div>
-                        <div class="font-bold border border-gray-300 rounded-lg w-40 py-3 ml-4 text-center tab inactive flex justify-center" data-tab="delivery">
+                        <div class="hidden font-bold border border-gray-300 rounded-lg w-40 py-3 ml-4 text-center tab inactive justify-center" data-tab="delivery">
                             Delivery time
                             <svg class="ml-2 h-6 w-6 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M5.5 5h13a1 1 0 0 1 0.5 1.5L14 12L14 19L10 16L10 12L5 6.5a1 1 0 0 1 0.5 -1.5" /></svg>
                         </div>
@@ -41,19 +41,19 @@
                             <!-- <div id="budgetValue" class="hidden" data-subcategory="{{$budgetLower}}-{{$budgetUpper}}"></div> -->
 
                             <div class="flex items-center">
-                                <input id="default-radio-1" type="radio" value="0-50" name="budget-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2">
+                                <input id="default-radio-1" type="radio" value="0-300000" name="budget-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2">
                                 <label for="default-radio-1" class="ms-2 text-base font-bold">Value</label>
-                                <div class="ml-5">Under $50</div>
+                                <div class="ml-5">Dibawah Rp300.000</div>
                             </div>
                             <div class="flex items-center mt-2">
-                                <input checked id="default-radio-2" type="radio" value="50-90" name="budget-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 ">
+                                <input checked id="default-radio-2" type="radio" value="300000-700000" name="budget-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 ">
                                 <label for="default-radio-2" class="ms-2 text-base font-bold ">Mid-range</label>
-                                <div class="ml-5">$50 - $90</div>
+                                <div class="ml-5">Rp300.000 - Rp700.000</div>
                             </div>
                             <div class="flex items-center mt-2">
-                                <input checked id="default-radio-3" type="radio" value="90-999" name="budget-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 ">
+                                <input checked id="default-radio-3" type="radio" value="700000-1000000" name="budget-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 ">
                                 <label for="default-radio-3" class="ms-2 text-base font-bold ">High-end</label>
-                                <div class="ml-5">$90 & Above</div>
+                                <div class="ml-5">Diatas Rp700.000</div>
                             </div>
 
                             <div class="mt-3 flex justify-center">
@@ -98,9 +98,8 @@
 
                         @php
                             $filteredServices = $services->filter(function ($service) use ($budgetLower, $budgetUpper, $time) {
-                                return $service->basic_plan_price >= $budgetLower
-                                    && $service->basic_plan_price <= $budgetUpper
-                                    && $service->basic_plan_days <= $time;
+                                return $service->harga_per_bulan >= $budgetLower
+                                    && $service->harga_per_bulan <= $budgetUpper;
                             });
 
                             $servicesChunks = $filteredServices->chunk(5);
@@ -174,9 +173,10 @@
 
                                             <div class="font-bold">
                                                 <a href="{{ route('service.show', ['id' => $service->id, 'user_id' => $service->user_id]) }}" class="text-decoration-none hover:underline">
-                                                    From ${{ $service->basic_plan_price}}
-                                                    </a>
+                                                    Harga Rp{{ number_format($service->harga_per_bulan, 0, ',', '.') }}
+                                                </a>
                                             </div>
+
 
                                     </div>
 
@@ -269,33 +269,33 @@
         window.location.href = url;
     }
 
-    function applyFiltersTime() {
-        // Get the selected radio button value
-        var timeValue = document.querySelector('input[name="time-radio"]:checked').value;
+    // function applyFiltersTime() {
+    //     // Get the selected radio button value
+    //     var timeValue = document.querySelector('input[name="time-radio"]:checked').value;
 
-        console.log(timeValue);
-
-
-
-        var budgetValue = document.getElementById('budgetValue').value;
-
-        // var budgetValue = document.getElementById('budgetValue').getAttribute('data-subcategory');
-
-        // console.log(budgetValue);
-
-        // Split the value to get lower and upper bounds
-        var [budgetLower, budgetUpper] = budgetValue.split('-');
-
-        var subcategoryName = document.getElementById('budgetContent').getAttribute('data-subcategory');
+    //     console.log(timeValue);
 
 
-        // Update the URL with the selected values
-        var url = "{{ route('subcategory.show', ['subcategory' => ':subcategory', 'budgetLower' => ':budgetLower', 'budgetUpper' => ':budgetUpper', 'time' => ':time']) }}";
-        url = url.replace(':subcategory', subcategoryName).replace(':budgetLower', budgetLower).replace(':budgetUpper', budgetUpper).replace(':time', timeValue);
 
-        console.log(url);
-        // Redirect to the updated URL
-        window.location.href = url;
-    }
+    //     var budgetValue = document.getElementById('budgetValue').value;
+
+    //     // var budgetValue = document.getElementById('budgetValue').getAttribute('data-subcategory');
+
+    //     // console.log(budgetValue);
+
+    //     // Split the value to get lower and upper bounds
+    //     var [budgetLower, budgetUpper] = budgetValue.split('-');
+
+    //     var subcategoryName = document.getElementById('budgetContent').getAttribute('data-subcategory');
+
+
+    //     // Update the URL with the selected values
+    //     var url = "{{ route('subcategory.show', ['subcategory' => ':subcategory', 'budgetLower' => ':budgetLower', 'budgetUpper' => ':budgetUpper', 'time' => ':time']) }}";
+    //     url = url.replace(':subcategory', subcategoryName).replace(':budgetLower', budgetLower).replace(':budgetUpper', budgetUpper).replace(':time', timeValue);
+
+    //     console.log(url);
+    //     // Redirect to the updated URL
+    //     window.location.href = url;
+    // }
 </script>
 </x-app-layout>

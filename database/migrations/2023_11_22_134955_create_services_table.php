@@ -45,7 +45,6 @@ return new class extends Migration
             $table->integer('kamar_tersedia');
             $table->integer('harga_per_bulan');
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('category_id')->constrained('subcategory');
             $table->foreignId('subcategory_id')->constrained('subcategory');
         });
     }

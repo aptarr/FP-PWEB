@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
             UserLanguageSeeder::class,
             UserEducationSeeder::class,
             UserCertificationSeeder::class,
-            CategorySeeder::class,
             SubcategorySeeder::class,
             ServiceSeeder::class,
             UserReviewSeeder::class,
