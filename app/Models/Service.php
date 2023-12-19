@@ -53,4 +53,13 @@ class Service extends Model
     public function wishlist() {
         return $this->belongsToMany(User::class, 'wishlists', 'service_id', 'user_id');
     }
+
+    public function fasilitaskamar() {
+        return $this->hasMany(FasilitasKamar::class);
+    }
+
+    public function fasilitaskamarmandi() {
+        return $this->hasMany(FasilitasKamarMandi::class);
+    }
+
 }
