@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             ServiceReportSeeder::class,
             TransactionSeeder::class,
             WishlistSeeder::class,
+            FasilitasKamarSeeder::class,
+            FasilitasKamarMandiSeeder::class,
         ]);
     }
 }

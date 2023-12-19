@@ -9,6 +9,8 @@ class FasilitasKamarMandi extends Model
 {
     use HasFactory;
 
+    protected $table = 'fasilitas_kamar_mandi';
+
     protected $fillable = [
         'fasilitas',
         'service_id',
