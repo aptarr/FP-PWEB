@@ -14,9 +14,9 @@
                 <!-- routes to be added later -->
                 <form action="{{ route('service.filter') }}" method="POST" class="flex items-center justify-center">
                 @csrf
-                    <x-text-input id="search_bar" name="search_bar" type="text" class="mt-1 block w-11/12 " placeholder="What service are you looking for today?" />
-                    <button type="submit" class="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm w-1/12 px-4 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 me-2">
-                        Search
+                    <x-text-input id="search_bar" name="search_bar" type="text" class="mt-1 block w-11/12 " placeholder="Kost apa yang ingin anda cari hari ini?" />
+                    <button type="submit" class="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm w-1/12 px-4 py-2.5 text-center inline-flex items-center justify-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 me-2">
+                        Cari
                     </button>
                 </form>
 
@@ -24,7 +24,8 @@
 
             <!-- Notification icon -->
             <div class="hidden sm:flex sm:items-center sm:ms-5">
-                <x-dropdown align="right" width="80">
+            <x-notification-logo class="h-8 w-8 text-gray-800"/>
+                <!-- <x-dropdown align="right" width="80">
                     <x-slot name="trigger">
                         <x-notification-logo class="h-8 w-8 text-gray-800"/>
                     </x-slot>
@@ -34,7 +35,6 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
-                        <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
@@ -46,14 +46,15 @@
                         </form>
 
                     </x-slot>
-                </x-dropdown>
+                </x-dropdown> -->
             </div>
 
             <!-- Message Icon -->
             <div class="hidden sm:flex sm:items-center sm:ms-5">
-                <x-dropdown align="right" width="80">
+                <x-message-logo class="h-8 w-8 text-gray-800"/>
+                <!-- <x-dropdown align="right" width="80">
                     <x-slot name="trigger">
-                        <x-message-logo class="h-8 w-8 text-gray-800"/>
+                    <x-message-logo class="h-8 w-8 text-gray-800"/>
                     </x-slot>
 
                     <x-slot name="content">
@@ -61,7 +62,7 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
-                        <!-- Authentication -->
+                       
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
@@ -73,14 +74,15 @@
                         </form>
 
                     </x-slot>
-                </x-dropdown>
+                </x-dropdown> -->
             </div>
 
 
 
             <!-- Wishlist Icon -->
             <div class="hidden sm:flex sm:items-center sm:ms-5">
-                <x-dropdown align="right" width="80">
+                <x-wishlist-logo class="h-8 w-8 text-gray-800"/>
+                <!-- <x-dropdown align="right" width="80">
                     <x-slot name="trigger">
                         <x-wishlist-logo class="h-8 w-8 text-gray-800"/>
                     </x-slot>
@@ -90,7 +92,7 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
-                        <!-- Authentication -->
+                      
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
@@ -102,8 +104,10 @@
                         </form>
 
                     </x-slot>
-                </x-dropdown>
+                </x-dropdown> -->
             </div>
+
+            
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
@@ -121,26 +125,31 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.show')">
-                            {{ __('Profile') }}
+                            {{ __('Profil') }}
                         </x-dropdown-link>
 
-                        <x-dropdown-link :href="route('get.myorder')">
-                            {{ __('My Orders') }}
-                        </x-dropdown-link>
 
+                        @unless(auth()->user()->isSeller)
+                            <x-dropdown-link :href="route('get.myorder')">
+                                {{ __('Riwayat Transaksi') }}
+                            </x-dropdown-link>
+                        @endunless
+
+                        @if(auth()->user()->isSeller)
                         <x-dropdown-link :href="route('get.sellorder')">
-                            {{ __('Manage Selling Order') }}
+                            {{ __('Transaksi Saya') }}
                         </x-dropdown-link>
+                        @endif
 
                         @if(auth()->user()->isAdmin)
                             <x-dropdown-link :href="route('admin.show', ['id' => auth()->user()->id])">
-                                {{ __('Admin Page') }}
+                                {{ __('Halaman Admin') }}
                             </x-dropdown-link>
                         @endif
 
 
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Account Setting') }}
+                            {{ __('Atur Akun') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -150,7 +159,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Keluar') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -195,46 +204,26 @@
 
                     <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
                         <div class="group inline-block relative">
-                            <x-nav-link>
+                            <x-nav-link href="{{ route('subcategory.show', ['subcategory' => 'Bogor', 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}">
                                 {{ __('Bogor') }}
                             </x-nav-link>
-                                <ul class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
-                                    <ul>
-                                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Website Development', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Website Development</a></li>
-                                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Software Development', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Software Development</a></li>
-                                    </ul>
-                                </ul>
-
-
                         </div>
                     </div>
 
                     <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
                         <div class="group inline-block relative">
-                            <x-nav-link>
+                            <x-nav-link href="{{ route('subcategory.show', ['subcategory' => 'Surabaya', 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}">
                                 {{ __('Surabaya') }}
                             </x-nav-link>
-                                <ul class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
-                                    <ul>
-                                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Search', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Search</a></li>
-                                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Social', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Social</a></li>
-                                    </ul>
-                                </ul>
 
                         </div>
                     </div>
 
                     <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
                         <div class="group inline-block relative">
-                        <x-nav-link>
-                            {{ __('Bekasi') }}
-                        </x-nav-link>
-                                <ul class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
-                                    <ul>
-                                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Editing & Post-Production', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Editing & Post-Production</a></li>
-                                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Animation', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Animation</a></li>
-                                    </ul>
-                                </ul>
+                        <x-nav-link href="{{ route('subcategory.show', ['subcategory' => 'Bekasi', 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}">
+                                {{ __('Bekasi') }}
+                            </x-nav-link>
 
 
                         </div>
@@ -243,15 +232,9 @@
 
                     <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
                         <div class="group inline-block relative">
-                        <x-nav-link>
-                            {{ __('Yogyakarta') }}
-                        </x-nav-link>
-                                    <ul class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
-                                        <ul>
-                                            <li><a href="{{ route('subcategory.show', ['subcategory' => 'Content Writing', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Content Writing</a></li>
-                                            <li><a href="{{ route('subcategory.show', ['subcategory' => 'Career Writing', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Career Writing</a></li>
-                                        </ul>
-                                    </ul>
+                        <x-nav-link href="{{ route('subcategory.show', ['subcategory' => 'Yogyakarta', 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}">
+                                {{ __('Yogyakarta') }}
+                            </x-nav-link>
 
 
                         </div>
@@ -260,15 +243,9 @@
 
                     <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
                         <div class="group inline-block relative">
-                            <x-nav-link>
+                        <x-nav-link href="{{ route('subcategory.show', ['subcategory' => 'Semarang', 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}">
                                 {{ __('Semarang') }}
                             </x-nav-link>
-                                        <ul class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
-                                            <ul>
-                                                <li><a href="{{ route('subcategory.show', ['subcategory' => 'Music Production & Writing', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Music Production & Writing</a></li>
-                                                <li><a href="{{ route('subcategory.show', ['subcategory' => 'Streaming & Audio', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Streaming & Audio</a></li>
-                                            </ul>
-                                        </ul>
 
                         </div>
 
@@ -276,30 +253,18 @@
 
                     <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
                         <div class="group inline-block relative">
-                            <x-nav-link>
+                        <x-nav-link href="{{ route('subcategory.show', ['subcategory' => 'Depok', 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}">
                                 {{ __('Depok') }}
                             </x-nav-link>
-                                        <ul class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
-                                            <ul>
-                                                <li><a href="{{ route('subcategory.show', ['subcategory' => 'General & Administrative', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">General & Administrative</a></li>
-                                                <li><a href="{{ route('subcategory.show', ['subcategory' => 'Business Management', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Business Management</a></li>
-                                            </ul>
-                                        </ul>
 
                         </div>
                     </div>
 
                     <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
                         <div class="group inline-block relative">
-                            <x-nav-link>
+                        <x-nav-link href="{{ route('subcategory.show', ['subcategory' => 'Bandung', 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}">
                                 {{ __('Bandung') }}
                             </x-nav-link>
-                                        <ul class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
-                                            <ul>
-                                                <li><a href="{{ route('subcategory.show', ['subcategory' => 'Data Analysis', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Data Analysis</a></li>
-                                                <li><a href="{{ route('subcategory.show', ['subcategory' => 'Data Collection', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Data Collection</a></li>
-                                            </ul>
-                                        </ul>
 
                         </div>
 
@@ -307,15 +272,9 @@
 
                     <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
                     <div class="group inline-block relative">
-                        <x-nav-link>
-                            {{ __('Tangerang') }}
-                        </x-nav-link>
-                                        <ul class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
-                                            <ul>
-                                                <li><a href="{{ route('subcategory.show', ['subcategory' => 'Products & Lifestyle', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Products & Lifestyle</a></li>
-                                                <li><a href="{{ route('subcategory.show', ['subcategory' => 'People & Scenes', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}" class="block px-2 py-1 hover:bg-gray-200 font-extrabold">People & Scenes</a></li>
-                                            </ul>
-                                        </ul>
+                    <x-nav-link href="{{ route('subcategory.show', ['subcategory' => 'Tangerang', 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}">
+                                {{ __('Tangerang') }}
+                            </x-nav-link>
 
                         </div>
 

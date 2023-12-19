@@ -47,7 +47,7 @@
 
                                             </div>
 
-                                            <div class="mt-2 flex">
+                                            <!-- <div class="mt-2 flex">
                                                 <a href="{{ route('profile.page.show', ['id' => $service->user_id]) }}" class="text-decoration-none">
                                                     @if(isset($service->user_image))
                                                         <img src="{{ Storage::url($service->user_image) }}" class="rounded-full h-7 w-7 mr-2" alt="image-service">
@@ -59,7 +59,7 @@
                                             {{$service->username}}
                                             </a>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                             <div class="mt-1 text-lg">
                                             <a href="{{ route('service.show', ['id' => $service->id, 'user_id' => $service->user_id]) }}" class="text-decoration-none hover:underline">
@@ -88,7 +88,7 @@
 
                                             <div class="font-bold">
                                             <a href="{{ route('service.show', ['id' => $service->id, 'user_id' => $service->user_id]) }}" class="text-decoration-none hover:underline">
-                                            From ${{ $service->basic_plan_price}}
+                                            Harga Rp{{ number_format($service->harga_per_bulan, 0, ',', '.') }}
                                                     </a>
                                             </div>
 

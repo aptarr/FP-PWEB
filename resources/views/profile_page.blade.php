@@ -26,8 +26,8 @@
                         <div class="py-4">
                                 <div class="mb-4">
                                     <div class="flex">
-                                        <div class="w-1/2 text-left">
-                                            <h3>Description</h3>
+                                        <div class="w-1/2 text-left font-semibold">
+                                            <h3>Mengenai penyewa kos</h3>
                                         </div>
 
                                     </div>
@@ -36,15 +36,15 @@
                                     </p>
                                 </div>
                                 <div class="flex">
-                                    <div class="w-1/2 text-left">
-                                        Member since:
+                                    <div class="w-1/2 text-left font-semibold">
+                                        Member sejak:
                                     </div>
                                     <div class="w-1/2 text-right">
                                         {{ Auth::user()->created_at->format('j F Y') }}
                                     </div>
                                 </div>
                             </div>
-                        <div class="flex-col align-center my-5">
+                        <!-- <div class="flex-col align-center my-5">
                             <div class="flex font-semibold">
                                 <div class="w-1/2 text-left">
                                     <h3>Languages</h3>
@@ -110,7 +110,7 @@
                                         </div>
                                 </div>
                             @endforeach
-                        </div>
+                        </div> -->
                     </div>
 
                 </div>
@@ -121,7 +121,7 @@
                 <div class="flex-col w-3/5 m-8 bg-white border border-gray-300">
                     <div class="flex justify-center align-middle font-semibold text-3xl p-4">
                         <div>
-                        {{ __("Gigs list") }}
+                        {{ __("Daftar Kost") }}
                         </div>
 
                     </div>

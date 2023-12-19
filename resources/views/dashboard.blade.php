@@ -9,11 +9,11 @@
 
     <div class=" bg-white">
         <div class="bg-white py-8 w-330 mx-auto font-semibold text-3xl text-gray-800 leading-tight">
-            Welcome back, {{ Auth::user()->name }}!
+            Selamat datang, {{ Auth::user()->name }}!
         </div>
 
         <div class="bg-white mt-4 w-330 mx-auto font-semibold text-2xl text-gray-800 leading-tight flex">
-            Reccomended Gigs in
+            Kos rekomendasi di
             <div class="ml-1 text-blue-600">
                 {{$randomSubcategory->subcategory_name}}
             </div>
@@ -25,7 +25,7 @@
                             <!-- Item 1 -->
                             <div class="  flex gap-5 justify-center py-3 px-3" >
                             @foreach ($reccomendServices as $service)
-                            <div class="w-64 h-96">
+                            <div class="w-64 h-80">
                                 <div id="" class="relative w-full h-52">
                                     <!-- Carousel wrapper -->
                                         <div class="relative overflow-hidden rounded-lg md:h-52">
@@ -43,7 +43,7 @@
 
                                     </div>
 
-                                    <div class="mt-2 flex">
+                                    <!-- <div class="mt-2 flex">
                                         <a href="{{ route('profile.page.show', ['id' => $service->user_id]) }}" class="text-decoration-none">
                                             @if(isset($service->image))
                                                 <img src="{{ Storage::url($service->image) }}" class="rounded-full h-7 w-7" alt="image-service">
@@ -60,7 +60,7 @@
 
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="mt-1 text-lg">
                                     <a href="{{ route('service.show', ['id' => $service->id, 'user_id' => $service->user_id]) }}" class="text-decoration-none">
@@ -89,7 +89,7 @@
 
                                     <div class="font-bold">
                                         <a href="{{ route('service.show', ['id' => $service->id, 'user_id' => $service->user_id]) }}" class="text-decoration-none">
-                                            From ${{ $service->basic_plan_price}}
+                                        Harga Rp{{ number_format($service->harga_per_bulan, 0, ',', '.') }}
                                         </a>
                                     </div>
 
@@ -100,7 +100,7 @@
                     </div>
 
                     <div class="bg-white mt-4 w-330 mx-auto font-semibold text-2xl text-gray-800 leading-tight flex">
-                        All Gigs
+                        Semua kos
                     </div>
 
                     <div class="w-330 mx-auto mt-4">
@@ -113,7 +113,7 @@
                             @foreach($serviceChunk as $service)
 
 
-                                <div class="w-64 h-96">
+                                <div class="w-64 h-80">
                                         <div id="" class="relative w-full h-52">
                                             <!-- Carousel wrapper -->
                                                 <div class="relative overflow-hidden rounded-lg md:h-52">
@@ -131,7 +131,7 @@
 
                                             </div>
 
-                                            <div class="mt-2 flex">
+                                            <!-- <div class="mt-2 flex">
                                                 <a href="{{ route('profile.page.show', ['id' => $service->user_id]) }}" class="text-decoration-none">
                                                     @if(isset($service->image))
                                                         <img src="{{ Storage::url($service->image) }}" class="rounded-full h-7 w-7" alt="image-service">
@@ -147,7 +147,7 @@
                                                         </a>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                             <div class="mt-1 text-lg">
                                             <a href="{{ route('service.show', ['id' => $service->id, 'user_id' => $service->user_id]) }}" class="text-decoration-none hover:underline">
@@ -176,7 +176,7 @@
 
                                             <div class="font-bold">
                                                 <a href="{{ route('service.show', ['id' => $service->id, 'user_id' => $service->user_id]) }}" class="text-decoration-none hover:underline">
-                                                    From ${{ $service->basic_plan_price}}
+                                                Harga Rp{{ number_format($service->harga_per_bulan, 0, ',', '.') }}
                                                     </a>
                                             </div>
 

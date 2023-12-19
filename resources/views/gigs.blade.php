@@ -33,7 +33,7 @@
                 <div class="mt-8 text-3xl font-bold">
                     {{ $service->title}}
                 </div>
-                <div class="mt-5 flex">
+                <!-- <div class="mt-5 flex">
                         <a href="{{ route('profile.page.show', ['id' => $service->user_id]) }}" class="text-decoration-none">
                         @if(isset($service->user_image))
                             <img src="{{ Storage::url($service->user_image) }}" class="rounded-full h-14 w-14" alt="image-service">
@@ -41,6 +41,7 @@
                             <img src="{{ asset('images/Thinker-Auguste-Rodin-Museum-Paris-1904.jpg') }}" class="rounded-full h-14 w-14" alt="...">
                         @endif
                         </a>
+                        
                     <div>
                         <a href="{{ route('profile.page.show', ['id' => $service->user_id]) }}" class="text-decoration-none">
                             <div class="ml-4 font-semibold text-lg">
@@ -66,7 +67,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="mt-5">
                     <div id="default-carousel" class="relative w-full" data-carousel="static">
@@ -87,7 +88,7 @@
 
                     <div class="mt-10">
                         <div class="text-lg font-semibold">
-                            About this gig
+                            Mengenai kos ini
                         </div>
                         <div class="text-lg font-normal">
                         {{ $service->description}}
@@ -96,7 +97,7 @@
 
 
                     <div class="mt-20 text-lg font-semibold">
-                            About the seller
+                            Mengenai penyewa kos
                     </div>
                     <div class="mt-5 flex">
                         <a href="{{ route('profile.page.show', ['id' => $service->user_id]) }}" class="text-decoration-none">
@@ -108,7 +109,9 @@
                         </a>
                         <div>
                             <div class="ml-4 font-semibold text-lg">
+                            <a href="{{ route('profile.page.show', ['id' => $service->user_id]) }}" class="text-decoration-none">
                             {{ $service->username}}
+                                </a>
                             </div>
                             <div class="ml-4 flex items-center">
                                 <svg class="h-4 w-4 black width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -139,7 +142,7 @@
                         <div>
                             {{ $service->description }}
                         </div>
-                        <div class="flex border-t border-gray-300 mt-5 py-2 font-semibold">
+                        <!-- <div class="flex border-t border-gray-300 mt-5 py-2 font-semibold">
                             <div class="w-1/2">
                                         Languages
 
@@ -155,7 +158,7 @@
                                         {{ $registrationYear }}
                                         </div>
                            </div>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="mt-20 text-lg font-semibold">
@@ -196,9 +199,9 @@
                                 <img src="{{ asset('images/Thinker-Auguste-Rodin-Museum-Paris-1904.jpg') }}" alt="Example Image" class="rounded-full h-14 w-14">
                                 <div>
                                     <div class="ml-4 font-semibold text-lg">
-                                            <a href="{{ route('profile.page.show', ['id' => $review->user_id]) }}" class="text-decoration-none">
+                                            
                                             {{$review->user_name}}
-                                            </a>
+                                            
                                     </div>
                                     <div class="ml-4 flex items-center">
                                         <svg class="h-4 w-4 black width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

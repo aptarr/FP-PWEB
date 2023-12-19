@@ -130,7 +130,7 @@
 
                                             </div>
 
-                                            <div class="mt-2 flex">
+                                            <!-- <div class="mt-2 flex">
                                                 @if(isset($service->user_image))
                                                     <img src="{{ Storage::url($service->user_image) }}" class="rounded-full h-7 w-7" alt="image-service">
                                                 @else
@@ -144,7 +144,7 @@
 
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                             <div class="mt-1 text-lg">
                                             <a href="{{ route('service.show', ['id' => $service->id, 'user_id' => $service->user_id]) }}" class="text-decoration-none hover:underline">
