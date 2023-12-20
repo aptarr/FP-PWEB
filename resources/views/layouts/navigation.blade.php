@@ -62,7 +62,7 @@
                             {{ __('Account Setting') }}
                         </x-dropdown-link>
 
-                      
+
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
@@ -72,7 +72,7 @@
                             </x-dropdown-link>
                         </form>
                     </x-slot>
-                </x-dropdown> 
+                </x-dropdown>
             </div>
         </nav>
 
@@ -173,188 +173,6 @@
     </div>
 </nav>
 
-
-<div class="flex mt-4 border-gray-200 border ">
-    <div class="flex mx-auto z-40">
-
-
-        <!-- Navigation Links -->
-        <!-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div> -->
-
-
-        <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
-            <div class="group inline-block relative">
-                <x-nav-link
-                    href="{{ route('subcategory.show', ['subcategory' => 'Jakarta', 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}">
-                    {{ __('Jakarta') }}
-                </x-nav-link>
-
-            </div>
-        </div>
-
-
-
-        <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
-            <div class="group inline-block relative">
-                <x-nav-link>
-                    {{ __('Bogor') }}
-                </x-nav-link>
-                <ul
-                    class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
-                    <ul>
-                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Website Development', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}"
-                                class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Website Development</a></li>
-                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Software Development', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}"
-                                class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Software Development</a></li>
-                    </ul>
-                </ul>
-
-
-            </div>
-        </div>
-
-        <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
-            <div class="group inline-block relative">
-                <x-nav-link>
-                    {{ __('Surabaya') }}
-                </x-nav-link>
-                <ul
-                    class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
-                    <ul>
-                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Search', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}"
-                                class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Search</a></li>
-                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Social', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}"
-                                class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Social</a></li>
-                    </ul>
-                </ul>
-
-            </div>
-        </div>
-
-        <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
-            <div class="group inline-block relative">
-                <x-nav-link>
-                    {{ __('Bekasi') }}
-                </x-nav-link>
-                <ul
-                    class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
-                    <ul>
-                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Editing & Post-Production', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}"
-                                class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Editing & Post-Production</a>
-                        </li>
-                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Animation', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}"
-                                class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Animation</a></li>
-                    </ul>
-                </ul>
-
-
-            </div>
-
-        </div>
-
-        <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
-            <div class="group inline-block relative">
-                <x-nav-link>
-                    {{ __('Yogyakarta') }}
-                </x-nav-link>
-                <ul
-                    class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
-                    <ul>
-                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Content Writing', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}"
-                                class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Content Writing</a></li>
-                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Career Writing', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}"
-                                class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Career Writing</a></li>
-                    </ul>
-                </ul>
-
-
-            </div>
-
-        </div>
-
-        <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
-            <div class="group inline-block relative">
-                <x-nav-link>
-                    {{ __('Semarang') }}
-                </x-nav-link>
-                <ul
-                    class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
-                    <ul>
-                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Music Production & Writing', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}"
-                                class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Music Production & Writing</a>
-                        </li>
-                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Streaming & Audio', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}"
-                                class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Streaming & Audio</a></li>
-                    </ul>
-                </ul>
-
-            </div>
-
-        </div>
-
-        <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
-            <div class="group inline-block relative">
-                <x-nav-link>
-                    {{ __('Depok') }}
-                </x-nav-link>
-                <ul
-                    class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
-                    <ul>
-                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'General & Administrative', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}"
-                                class="block px-2 py-1 hover:bg-gray-200 font-extrabold">General & Administrative</a>
-                        </li>
-                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Business Management', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}"
-                                class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Business Management</a></li>
-                    </ul>
-                </ul>
-
-            </div>
-        </div>
-
-        <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
-            <div class="group inline-block relative">
-                <x-nav-link>
-                    {{ __('Bandung') }}
-                </x-nav-link>
-                <ul
-                    class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
-                    <ul>
-                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Data Analysis', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}"
-                                class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Data Analysis</a></li>
-                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Data Collection', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}"
-                                class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Data Collection</a></li>
-                    </ul>
-                </ul>
-
-            </div>
-
-        </div>
-
-        <div class="hidden space-x-4 sm:-my-px sm:ms-5 sm:flex">
-            <div class="group inline-block relative">
-                <x-nav-link>
-                    {{ __('Tangerang') }}
-                </x-nav-link>
-                <ul
-                    class="absolute hidden text-gray-800 bg-white border border-gray-300 space-y-1 py-4 px-3 rounded-l-sm group-hover:block w-60 h-30 left-0 mt-0">
-                    <ul>
-                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'Products & Lifestyle', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}"
-                                class="block px-2 py-1 hover:bg-gray-200 font-extrabold">Products & Lifestyle</a></li>
-                        <li><a href="{{ route('subcategory.show', ['subcategory' => 'People & Scenes', 'budgetLower' => 0, 'budgetUpper' => 999, 'time' => 999]) }}"
-                                class="block px-2 py-1 hover:bg-gray-200 font-extrabold">People & Scenes</a></li>
-                    </ul>
-                </ul>
-
-            </div>
-
-        </div>
-
-    </div>
-</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
