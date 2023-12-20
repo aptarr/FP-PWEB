@@ -55,15 +55,12 @@
                             </div>
                             <div id="dropdown"
                                 class="absolute top-full left-0 right-0 rounded-lg border-[1px] border-stone-900 bg-white shadow-md hidden">
-                                <div onclick="selectOption('Jakarta')"
+                                @foreach($subcategories as $subcategory)
+                                <div onclick="selectOption('{{ $subcategory->subcategory_name }}', '{{ $subcategory->id }}')"
                                     class="text-stone-900 cursor-pointer p-4 hover:bg-gray-100 ">
-                                    Jakarta</div>
-                                <div onclick="selectOption('City 2')"
-                                    class="text-stone-900 cursor-pointer p-4 hover:bg-gray-100 ">City
-                                    2</div>
-                                <div onclick="selectOption('City 3')"
-                                    class="text-stone-900 cursor-pointer p-4 hover:bg-gray-100 ">City
-                                    3</div>
+                                    {{ $subcategory->subcategory_name }}
+                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -99,66 +96,24 @@
             <div class="flex">
                 <div class="w-10/12 overflow-hidden mx-auto" id="slideContainer">
                     <ul id="slider" class="flex w-full">
+
+                        @foreach($services as $service)
                         <li class="p-5">
+
                             <div class="border rounded-lg p-5 h-full">
                                 <img class="h-50 w-full object-cover rounded-md"
-                                    src="{{ asset('images/gambar_1.jpg') }}" alt="">
-                                <h2 class="mt-2 text-2xl font-bold text-stone-900">some big</h2>
+                                            src="{{ asset('images/gambar_1.jpg') }}" alt="">
+                                <h2 class="mt-2 text-2xl font-bold text-stone-900">{{ $service->title }}</h2>
                                 <p class="mt-2 text-stone-900">
-                                    testing
+                                    Harga Rp.{{ $service->harga_per_bulan }}
+                                </p>
+                                <p class="mt-2 text-stone-900">
+                                    Lokasi : {{ $service->subcategory->subcategory_name }}
                                 </p>
                             </div>
                         </li>
-                        <li class="p-5">
-                            <div class="border rounded-lg p-5 h-full">
-                                <img class="h-50 w-full object-cover rounded-md"
-                                    src="{{ asset('images/gambar_1.jpg') }}" alt="">
-                                <h2 class="mt-2 text-2xl font-bold text-stone-900">some big</h2>
-                                <p class="mt-2 text-stone-900">
-                                    testing
-                                </p>
-                            </div>
-                        </li>
-                        <li class="p-5">
-                            <div class="border rounded-lg p-5 h-full">
-                                <img class="h-50 w-full object-cover rounded-md"
-                                    src="{{ asset('images/gambar_1.jpg') }}" alt="">
-                                <h2 class="mt-2 text-2xl font-bold text-stone-900">some big</h2>
-                                <p class="mt-2 text-stone-900">
-                                    testing
-                                </p>
-                            </div>
-                        </li>
-                        <li class="p-5">
-                            <div class="border rounded-lg p-5 h-full">
-                                <img class="h-50 w-full object-cover rounded-md"
-                                    src="{{ asset('images/gambar_1.jpg') }}" alt="">
-                                <h2 class="mt-2 text-2xl font-bold text-stone-900">some big</h2>
-                                <p class="mt-2 text-stone-900">
-                                    testing
-                                </p>
-                            </div>
-                        </li>
-                        <li class="p-5">
-                            <div class="border rounded-lg p-5 h-full">
-                                <img class="h-50 w-full object-cover rounded-md"
-                                    src="{{ asset('images/gambar_1.jpg') }}" alt="">
-                                <h2 class="mt-2 text-2xl font-bold text-stone-900">some big</h2>
-                                <p class="mt-2 text-stone-900">
-                                    testing
-                                </p>
-                            </div>
-                        </li>
-                        <li class="p-5">
-                            <div class="border rounded-lg p-5 h-full">
-                                <img class="h-50 w-full object-cover rounded-md"
-                                    src="{{ asset('images/gambar_1.jpg') }}" alt="">
-                                <h2 class="mt-2 text-2xl font-bold text-stone-900">some big</h2>
-                                <p class="mt-2 text-stone-900">
-                                    testing
-                                </p>
-                            </div>
-                        </li>
+                        @endforeach
+
                     </ul>
                 </div>
             </div>
@@ -168,50 +123,58 @@
             <div class="w-9/12 mx-auto text-3xl font-bold text-stone-900 text-center sm:text-left">Area Kos
                 Populer</div>
             <div class="container mx-auto flex flex-wrap items-center my-16">
+                @php
+                    // Convert the collection to an array and shuffle it
+                    $subcategoriesArray = $subcategories->toArray();
+                    shuffle($subcategoriesArray);
+                    
+                    // Take the first 4 elements from the shuffled array
+                    $randomSubcategories = array_slice($subcategoriesArray, 0, 4);
+                @endphp
                 <div class="w-full max-w-sm bg-white overflow-hidden lg:w-1/4 p-3 pr-0 mx-auto">
-                    <a href="{{ route('subcategory.show', ['subcategory' => 'Jakarta', 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}"
+                    <a href="{{ route('subcategory.show', ['subcategory' => $randomSubcategories[0]['subcategory_name'], 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}"
                         class="block relative h-50 w-full group">
                         <div
                             class="absolute inset-0 bg-black opacity-0 group-hover:opacity-60 transition-opacity rounded-md">
                         </div>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white text-5xl font-bold">Jakarta</span>
+                            <span class="text-white text-5xl font-bold">{{$randomSubcategories[0]['subcategory_name']}}</span>
                         </div>
                         <img class="h-full w-full object-cover rounded-md" src="{{ asset('images/gambar_1.jpg') }}"
                             alt="">
                     </a>
                 </div>
                 <div class="w-full max-w-sm bg-white overflow-hidden lg:w-1/4 p-3 pr-0 mx-auto">
-                    <a href="#" class="block relative h-50 w-full group">
+                    <a href="{{ route('subcategory.show', ['subcategory' => $randomSubcategories[1]['subcategory_name'], 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}" class="block relative h-50 w-full group">
                         <div
                             class="absolute inset-0 bg-black opacity-0 group-hover:opacity-60 transition-opacity rounded-md">
                         </div>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white text-5xl font-bold">Jakarta</span>
+                            <span class="text-white text-5xl font-bold">{{$randomSubcategories[1]['subcategory_name']}}</span>
                         </div>
                         <img class="h-full w-full object-cover rounded-md" src="{{ asset('images/gambar_1.jpg') }}"
                             alt="">
                     </a>
                 </div>
                 <div class="w-full max-w-sm bg-white overflow-hidden lg:w-1/4 p-3 pr-0 mx-auto">
-                    <a href="#" class="block relative h-50 w-full group">
+                    <a href="{{ route('subcategory.show', ['subcategory' => $randomSubcategories[2]['subcategory_name'], 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}" class="block relative h-50 w-full group">
                         <div
                             class="absolute inset-0 bg-black opacity-0 group-hover:opacity-60 transition-opacity rounded-md">
                         </div>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white text-5xl font-bold">Jakarta</span>
+                            <span class="text-white text-5xl font-bold">{{$randomSubcategories[2]['subcategory_name']}}</span>
                         </div>
                         <img class="h-full w-full object-cover rounded-md" src="{{ asset('images/gambar_1.jpg') }}"
                             alt="">
                     </a>
                 </div>
                 <div class="w-full max-w-sm bg-white overflow-hidden lg:w-1/4 p-3 pr-0 mx-auto">
-                    <a href="#" class="block relative h-50 w-full group">
+                    <a href="{{ route('subcategory.show', ['subcategory' => $randomSubcategories[3]['subcategory_name'], 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}" class="block relative h-50 w-full group">
                         <div
                             class="absolute inset-0 bg-black opacity-0 group-hover:opacity-60 transition-opacity rounded-md">
                         </div>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white text-5xl font-bold">Jakarta</span>
+                            <span class="text-white text-5xl font-bold">{{$randomSubcategories[3]['subcategory_name']}}</span>
                         </div>
                         <img class="h-full w-full object-cover rounded-md" src="{{ asset('images/gambar_1.jpg') }}"
                             alt="">
@@ -282,16 +245,72 @@
                 dropdown.classList.toggle('hidden');
             }
 
-            function selectOption(value) {
+            function selectOption(value, id) {
                 const selectedOptionText = document.getElementById('selectedOptionText');
                 selectedOptionText.textContent = value;
 
                 // You can now use the selected value in your component or redirect as needed.
                 // For example, you can store the value in a variable or update a component state.
                 console.log('Selected Value:', value);
+                
 
                 // Close the dropdown after selection (optional)
                 toggleDropdown();
+                //console.log(id);
+                if (id !== null && id !== undefined) {
+                    fetchServices(id);
+                }
+            }
+
+            // function selectOption(subcategoryName, subcategoryId) {
+            // // Update the dropdown display or perform other actions if needed
+
+            // // Fetch services based on the selected subcategory
+            //     fetchServices(subcategoryId);
+            // }
+
+            async function fetchServices(subcategoryId) {
+              
+                    const response = await fetch(`/api/filter-service/${subcategoryId}`);
+                    
+                   
+                    const services = await response.json();
+                    
+                    console.log(services);
+                    // Update the displayed services
+                    updateServices(services);
+            
+            }
+
+
+            function updateServices(services) {
+                // Update the DOM to display the fetched services
+                // Replace the existing services with the new ones
+                const servicesContainer = document.getElementById('slider');
+                servicesContainer.innerHTML = '';
+
+                // Limit the number of services to display to 10
+                const servicesToDisplay = services.slice(0, 10);
+
+                servicesToDisplay.forEach(service => {
+                    const listItem = document.createElement('li');
+                    listItem.classList.add('p-5');
+                    listItem.innerHTML = `
+                        <div class="border rounded-lg p-5 h-full">
+                        <img class="h-50 w-full object-cover rounded-md"
+                                    src="{{ asset('images/gambar_1.jpg') }}" alt="">
+                            <h2 class="mt-2 text-2xl font-bold text-stone-900">${service.title}</h2>
+                            <p class="mt-2 text-stone-900">
+                                Harga Rp.${service.harga_per_bulan}
+                            </p>
+                            <p class="mt-2 text-stone-900">
+                                Lokasi : ${service.subcategory.subcategory_name}
+                            </p>
+                        </div>
+                    `;
+                    servicesContainer.appendChild(listItem);
+                });
+
             }
         </script>
 </x-app-layout>
