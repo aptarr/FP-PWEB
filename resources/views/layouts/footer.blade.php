@@ -91,5 +91,12 @@
             <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
             <span class="block text-sm text-gray-500 sm:text-center">© 2023 <a href="" class="hover:underline">kos
                     in™</a>. All Rights Reserved.</span>
+            <span class="block text-sm text-gray-500 font-bold sm:text-center">5025211082 - Charles & 5025211139 - Apta
+                Rasendriya
+                Wijaya</span>
+            <span class="block text-sm text-gray-500 font-bold sm:text-center">Kuliah Pemrograman Web Jurusan Teknik
+                Informatika
+                ITS (2023). Dosen: Imam Kuswardayan,
+                S.Kom, M.T</span>
         </div>
 </footer>
