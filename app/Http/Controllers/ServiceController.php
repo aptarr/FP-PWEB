@@ -10,6 +10,8 @@ use App\Models\Subcategory;
 use App\Models\UserLanguage;
 use App\Models\User;
 use App\Models\UserReview;
+use App\Models\FasilitasKamar;
+use App\Models\FasilitasKamarMandi;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
 use Illuminate\Support\Facades\Auth;
@@ -104,18 +106,10 @@ class ServiceController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:255',
-            'basic_plan_title' => 'required|string|max:255',
-            'basic_plan_price' => 'required|integer',
-            'basic_plan_description' => 'required|string|max:255',
-            'basic_plan_days' => 'required|integer',
-            'standard_plan_title' => 'required|string|max:255',
-            'standard_plan_price' => 'required|integer',
-            'standard_plan_description' => 'required|string|max:255',
-            'standard_plan_days' => 'required|integer',
-            'premium_plan_title' => 'required|string|max:255',
-            'premium_plan_price' => 'required|integer',
-            'premium_plan_description' => 'required|string|max:255',
-            'premium_plan_days' => 'required|integer',
+            'kamar_tersedia' => 'required|integer|min:1',
+            'harga_per_bulan' => 'required|integer|min:1',
+            'fasilitas_kost' => 'required|array|min:1',
+            'fasilitas_kamar_mandi' => 'required|array|min:1',
             'image' => 'max:2048|mimes:jpeg,png,jpg'
         ]);
 
@@ -125,30 +119,35 @@ class ServiceController extends Controller
             $path = NULL;
         }
 
+
         $data = [
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'basic_plan_title' => $request->input('basic_plan_title'),
-            'basic_plan_price' => $request->input('basic_plan_price'),
-            'basic_plan_description' => $request->input('basic_plan_description'),
-            'basic_plan_days' => $request->input('basic_plan_days'),
-            'standard_plan_title' => $request->input('standard_plan_title'),
-            'standard_plan_price' => $request->input('standard_plan_price'),
-            'standard_plan_description' => $request->input('standard_plan_description'),
-            'standard_plan_days' => $request->input('standard_plan_days'),
-            'premium_plan_title' => $request->input('premium_plan_title'),
-            'premium_plan_price' => $request->input('premium_plan_price'),
-            'premium_plan_description' => $request->input('premium_plan_description'),
-            'premium_plan_days' => $request->input('premium_plan_days'),
+            'kamar_tersedia' => $request->input('kamar_tersedia'),
+            'harga_per_bulan' => $request->input('harga_per_bulan'),
             'image' => $path,
-            'category_id' => $request->input('category_id'),
             'subcategory_id' => $request->input('subcategory_id'),
             'average_star' => 0,
         ];
 
-        $user->service()->create($data);
+        $service = $user->service()->create($data);
 
-        $successMessage = "Gig successfully added";
+        // Insert FasilitasKost records
+        foreach ($request->input('fasilitas_kost') as $fasilitasOption) {
+            FasilitasKamar::create([
+                'service_id' => $service->id,
+                'fasilitas' => $fasilitasOption,
+            ]);
+        }
+
+        foreach ($request->input('fasilitas_kamar_mandi') as $fasilitasOption) {
+            FasilitasKamarMandi::create([
+                'service_id' => $service->id,
+                'fasilitas' => $fasilitasOption,
+            ]);
+        }
+
+        $successMessage = "Kost successfully added";
 
         return redirect()->route('profile.show')->with('success', $successMessage);
     }
@@ -245,22 +244,20 @@ class ServiceController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:255',
-            'basic_plan_title' => 'required|string|max:255',
-            'basic_plan_price' => 'required|integer',
-            'basic_plan_description' => 'required|string|max:255',
-            'basic_plan_days' => 'required|integer',
-            'standard_plan_title' => 'required|string|max:255',
-            'standard_plan_price' => 'required|integer',
-            'standard_plan_description' => 'required|string|max:255',
-            'standard_plan_days' => 'required|integer',
-            'premium_plan_title' => 'required|string|max:255',
-            'premium_plan_price' => 'required|integer',
-            'premium_plan_description' => 'required|string|max:255',
-            'premium_plan_days' => 'required|integer',
-            'image' => 'required|max:2048|mimes:jpeg,png,jpg'
+            'kamar_tersedia' => 'required|integer|min:1',
+            'harga_per_bulan' => 'required|integer|min:1',
+            'fasilitas_kost' => 'required|array|min:1',
+            'fasilitas_kamar_mandi' => 'required|array|min:1',
+            'image' => 'max:2048|mimes:jpeg,png,jpg'
         ]);
 
         $service = Service::find($request->id_service);
+
+        // Find and delete all FasilitasKost records
+        FasilitasKamar::where('service_id', $service->id)->delete();
+
+        // Find and delete all FasilitasKamarMandi records
+        FasilitasKamarMandi::where('service_id', $service->id)->delete();
 
         if($service->image) {
             Storage::delete($service->image);
@@ -270,27 +267,29 @@ class ServiceController extends Controller
 
         $service = Service::find($request->id_service);
         $service->update([
-
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'basic_plan_title' => $request->input('basic_plan_title'),
-            'basic_plan_price' => $request->input('basic_plan_price'),
-            'basic_plan_description' => $request->input('basic_plan_description'),
-            'basic_plan_days' => $request->input('basic_plan_days'),
-            'standard_plan_title' => $request->input('standard_plan_title'),
-            'standard_plan_price' => $request->input('standard_plan_price'),
-            'standard_plan_description' => $request->input('standard_plan_description'),
-            'standard_plan_days' => $request->input('standard_plan_days'),
-            'premium_plan_title' => $request->input('premium_plan_title'),
-            'premium_plan_price' => $request->input('premium_plan_price'),
-            'premium_plan_description' => $request->input('premium_plan_description'),
-            'premium_plan_days' => $request->input('premium_plan_days'),
+            'kamar_tersedia' => $request->input('kamar_tersedia'),
+            'harga_per_bulan' => $request->input('harga_per_bulan'),
             'image' => $path,
-            'category_id' => $request->input('category_id'),
             'subcategory_id' => $request->input('subcategory_id'),
         ]);
 
-        $successMessage = "Gig successfully edited";
+        foreach ($request->input('fasilitas_kost') as $fasilitasOption) {
+            FasilitasKamar::create([
+                'service_id' => $service->id,
+                'fasilitas' => $fasilitasOption,
+            ]);
+        }
+
+        foreach ($request->input('fasilitas_kamar_mandi') as $fasilitasOption) {
+            FasilitasKamarMandi::create([
+                'service_id' => $service->id,
+                'fasilitas' => $fasilitasOption,
+            ]);
+        }
+
+        $successMessage = "Kost successfully edited";
 
         return redirect()->route('profile.show')->with('success', $successMessage);
     }
@@ -307,7 +306,7 @@ class ServiceController extends Controller
         }
         $service->delete();
 
-        $successMessage = "User certification successfully deleted";
+        $successMessage = "kost successfully deleted";
 
         return back()->with('success', $successMessage);
     }

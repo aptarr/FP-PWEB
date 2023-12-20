@@ -58,17 +58,18 @@
 
 
                 @if(auth()->user()->isSeller)
-                <div class="flex-col w-3/5 m-8 bg-white border border-gray-300">
+                <div class="flex-col mt-8 bg-white border border-gray-300 w-full">
                     <div class="flex justify-center align-middle font-semibold text-3xl p-4">
                         <div>
-                        {{ __("Gigs list") }}
+                        {{ __("Kost List") }}
                         </div>
-
-                        <a href="{{ route('service.create') }}">
-                            <x-primary-button class="ml-5" >
-                                {{ __("Add gig") }}
-                            </x-primary-button>
-                        </a>
+                        <div class="ml-5 flex justify-center items-center">
+                            <a href="{{ route('service.create') }}">
+                                <x-primary-button class="">
+                                    {{ __("Add kost") }}
+                                </x-primary-button>
+                            </a>
+                        </div>
                     </div>
                     <div class="px-10">
                         @foreach($services as $service)

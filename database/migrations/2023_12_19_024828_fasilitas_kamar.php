@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('fasilitas');
-            $table->foreignId('service_id')->constrained('services');
+            $table->foreignId('service_id')->constrained('services')->onDelete('cascade');;
         });
     }
 

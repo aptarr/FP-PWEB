@@ -47,10 +47,19 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
+                        @unless(auth()->user()->isSeller)
                         <x-dropdown-link :href="route('get.myorder')">
                             {{ __('My Transaction') }}
                         </x-dropdown-link>
+                        @endif
 
+
+                        @if(auth()->user()->isSeller)
+                        <x-dropdown-link :href="route('get.sellorder')">
+                            {{ __('Manage Selling Order') }}
+                        </x-dropdown-link>
+                        @endif
+                        
                         @if(auth()->user()->isAdmin)
                         <x-dropdown-link :href="route('admin.show', ['id' => auth()->user()->id])">
                             {{ __('Admin Page') }}
@@ -128,9 +137,11 @@
                                         {{ __('Profile') }}
                                     </x-dropdown-link>
 
+                                    @unless(auth()->user()->isSeller)
                                     <x-dropdown-link :href="route('get.myorder')">
                                         {{ __('My Transaction') }}
                                     </x-dropdown-link>
+                                    @endif
 
                                     @if(auth()->user()->isSeller)
                                     <x-dropdown-link :href="route('get.sellorder')">
