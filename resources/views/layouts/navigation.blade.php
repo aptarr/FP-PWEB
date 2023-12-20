@@ -48,9 +48,9 @@
                         </x-dropdown-link>
 
                         @unless(auth()->user()->isSeller)
-                        <x-dropdown-link :href="route('get.myorder')">
-                            {{ __('My Transaction') }}
-                        </x-dropdown-link>
+                            <x-dropdown-link :href="route('get.myorder')">
+                                {{ __('My Transaction') }}
+                            </x-dropdown-link>
                         @endif
 
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\UserLanguageController;
 use App\Http\Controllers\UserSkillController;
 use App\Http\Controllers\UserEducationController;
 use App\Http\Controllers\UserCertificationController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,11 +27,7 @@ Route::post('/reverse-me', function (Request $request) {
     return $reversed;
   });
 
-  
-Route::post('/register_user_language', [UserLanguageController::class, 'store']);
-Route::post('/register_user_skill', [UserSkillController::class, 'store']);
-Route::post('/register_user_education', [UserEducationController::class, 'store']);
-Route::post('/register_user_certification', [UserCertificationController::class, 'store']);
+Route::get('/filter-service/{subcategory_id}', [ServiceController::class, 'filterService']);
 
 Route::get('/posts', function(){
     dd('test api update');

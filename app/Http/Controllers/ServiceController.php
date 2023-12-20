@@ -22,49 +22,43 @@ class ServiceController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function filterService($subcategory_id)
+    {
+        
+        // Your filtering logic here...
+        // Example: Filter services based on the subcategory_id
+        // $subcategoryId = $request->input('subcategory_id');
+        $debugInfo = [
+            'subcategoryId' => $subcategory_id,
+            // ... Add other debug information as needed ...
+        ];
+
+        $services = Service::with(['user', 'subcategory']) // Assuming 'user' and 'subcategory' are the relationship methods in the Service model
+            ->where('subcategory_id', $subcategory_id)
+            ->get();
+
+
+        
+        //return response()->json($debugInfo);
+        return response()->json($services);
+    }
+
     public function index()
     {
+        // $randomSubcategory = Subcategory::inRandomOrder()->first();
+        $subcategories = Subcategory::all();
 
-        // $services = Service::join('users', 'services.user_id', '=', 'users.id')
-        // ->leftJoin('service_pictures', function ($join) {
-        //     $join->on('services.id', '=', 'service_pictures.service_id')
-        //         ->whereRaw('service_pictures.id = (SELECT MIN(id) FROM service_pictures WHERE service_id = services.id)');
-        // })
-        // ->select('services.*', 'users.name as username', 'service_pictures.path as picture_path')
-        // ->groupBy('services.id', 'users.name', 'service_pictures.path')
-        // ->take(30)
+        // $reccomendServices = Service::join('users', 'services.user_id', '=', 'users.id')
+        // ->leftJoin('user_review', 'services.id', '=', 'user_review.service_id')
+        // ->where('services.subcategory_id', $randomSubcategory->id) // Filter by the randomized subcategory ID
+        // ->select(
+        //     'services.*',
+        //     'users.name as username',
+        //     DB::raw('COUNT(user_review.id) as total_reviews')
+        // )
+        // ->groupBy('services.id', 'users.name')
+        // ->take(5)
         // ->get();
-
-        $randomSubcategory = Subcategory::inRandomOrder()->first();
-
-
-        $reccomendServices = Service::join('users', 'services.user_id', '=', 'users.id')
-        ->leftJoin('user_review', 'services.id', '=', 'user_review.service_id')
-        ->where('services.subcategory_id', $randomSubcategory->id) // Filter by the randomized subcategory ID
-        ->select(
-            'services.*',
-            'users.name as username',
-            DB::raw('COUNT(user_review.id) as total_reviews')
-        )
-        ->groupBy('services.id', 'users.name')
-        ->take(5)
-
-//         $randomSubcategoryId = Subcategory::inRandomOrder()->value('id');
-
-
-//         $reccomendServices = Service::join('users', 'services.user_id', '=', 'users.id')
-//         ->leftJoin('user_review', 'services.user_id', '=', 'user_review.user_id')
-//         ->where('services.subcategory_id', $randomSubcategoryId) // Filter by the randomized subcategory ID
-//         ->select(
-//             'services.*',
-//             'users.name as username',
-//             DB::raw('AVG(user_review.star_rating) as avg_star_rating'),
-//             DB::raw('COUNT(user_review.id) as total_reviews')
-//         )
-//         ->groupBy('services.id', 'users.name')
-//         ->take(25)
-
-        ->get();
 
 
         $services = Service::join('users', 'services.user_id', '=', 'users.id')
@@ -76,13 +70,13 @@ class ServiceController extends Controller
             DB::raw('COUNT(user_review.id) as total_reviews')
         )
         ->groupBy('services.id', 'users.name')
-        ->take(30)
+        ->take(100)
         ->get();
 
         //dd($services);
 
 
-        return view('dashboard', compact('services', 'reccomendServices', 'randomSubcategory'));
+        return view('dashboard', compact('services', 'subcategories'));
     }
 
     /**
@@ -157,28 +151,15 @@ class ServiceController extends Controller
      */
     public function show($id, $user_id)
     {
-        $languages = UserLanguage::where('user_id', $user_id)->pluck('language')->toArray();
-
         $user = User::find($user_id);
 
-        // $reviews = UserReview::with('user')
-        //     ->where('service_id', $id)
-        //     ->get();
+        $fasilitasKamar = FasilitasKamar::where('service_id', $id)->pluck('fasilitas')->toArray();
+        $fasilitasKamarMandi = FasilitasKamarMandi::where('service_id', $id)->pluck('fasilitas')->toArray();
 
         $reviews = UserReview::join('users', 'user_review.user_id', '=', 'users.id')
             ->where('user_review.service_id', $id)
             ->select('user_review.*', 'users.name as user_name')
             ->get();
-
-        // $reviews = User::join('user_review', 'user_review.user_id', '=', 'users.id')
-        //     ->join('services', 'user_review.service_id', '=', 'services.id')
-        //     ->select(
-        //         'users.*',
-        //         'user_review.review_description as review_description',
-
-        //     )
-        //     ->where('services.id', $id)
-        //     ->get();
 
            // dd($reviews);
 
@@ -197,7 +178,10 @@ class ServiceController extends Controller
         ->groupBy('services.id', 'users.name')
         ->first(); // Use first() to get a single result
 
-        return view('gigs', compact('service', 'languages', 'registrationYear', 'reviews'));
+
+        
+
+        return view('gigs', compact('service', 'fasilitasKamar', 'fasilitasKamarMandi', 'registrationYear', 'reviews'));
     }
 
     /**

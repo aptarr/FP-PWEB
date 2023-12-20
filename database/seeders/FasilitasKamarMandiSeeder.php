@@ -14,7 +14,7 @@ class FasilitasKamarMandiSeeder extends Seeder
     public function run(): void
     {
         // Category::factory()->count(5)->create();
-        $fasilitas = ['Ember Mandi', 'Kloset Duduk', 'Shower', ];
+        $fasilitas = ['Ember Mandi', 'Kloset Duduk', 'Shower', 'Kloset Jongkok'];
 
         $i = 1;
         for ($id = 1; $id <= 150; $id++) {
