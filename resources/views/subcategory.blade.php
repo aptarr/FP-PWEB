@@ -104,10 +104,10 @@
                 </div>
                 @endforeach
         </div>
-        <div class="flex flex-col h-full md:h-full">
+        <div class="hidden md:flex flex-col w-full md:w-1/2 relative">
             <iframe
                 src="https://www.google.com/maps/d/u/0/embed?mid=1osXGNZ1kNz_Qvg8CEHqoRVmnLLDgtuc&ehbc=2E312F&noprof=1"
-                class="w-full h-96 md:h-full" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                class="sticky top-0 h-screen desktop:block" width="900px" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
 
