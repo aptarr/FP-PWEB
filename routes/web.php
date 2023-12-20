@@ -34,10 +34,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::get('/dashboard', [ServiceController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/services/{id}/{user_id}', [ServiceController::class, 'show'])->name('service.show');
@@ -70,7 +66,7 @@ Route::post('/report/{id}', [ServiceReportController::class, 'store'])->name('re
 // Route::get('/my_order', function(){
 //     return view('my_order');
 // })->name('myorder');
-Route::get('/testingJob',function(){
+Route::get('/testingJob', function () {
     dispatch(new App\Jobs\CalculateServiceRating);
 });
 
@@ -87,72 +83,31 @@ Route::middleware('auth')->group(function () {
 //     return view('gigs');
 // });
 
-Route::get('/addgigs', function(){
+Route::get('/addgigs', function () {
     return view('addgigs');
 });
 
 Route::patch('/profile_picture/{id_user}/edit', [UserController::class, 'update'])->name('profile-picture.update');
-Route::get('/description/{id_user}/edit', [UserController::class,'editDescription'])->name('description.edit');
-Route::patch('/description/{id_user}/edit', [UserController::class,'updateDescription'])->name('description.update');
+Route::get('/description/{id_user}/edit', [UserController::class, 'editDescription'])->name('description.edit');
+Route::patch('/description/{id_user}/edit', [UserController::class, 'updateDescription'])->name('description.update');
 
 Route::get('/gigs', [ServiceController::class, 'create'])->name('service.create');
-Route::post('/gigs', [ServiceController::class,'store'])->name('service.store');
+Route::post('/gigs', [ServiceController::class, 'store'])->name('service.store');
 Route::get('/gigs/{id_service}/edit', [ServiceController::class, 'edit'])->name('service.edit');
-Route::patch('/gigs/{id_service}/edit', [ServiceController::class,'update'])->name('service.update');
-Route::delete('/gigs/{id_service}/delete', [ServiceController::class,'destroy'])->name('service.destroy');
-Route::delete('/gigs/{id_service}/deleteadmin', [ServiceController::class,'destroyAdmin'])->name('service.admin.destroy');
-
-Route::get('/language', [UserLanguageController::class, 'create'])->name('language.create');
-Route::post('/language', [UserLanguageController::class, 'store'])->name('language.store');
-Route::get('/language/{id_language}/edit', [UserLanguageController::class, 'edit'])->name('language.edit');
-Route::patch('/language/{id_language}/edit', [UserLanguageController::class, 'update'])->name('language.update');
-Route::delete('/language/{id_language}/delete', [UserLanguageController::class, 'destroy'])->name('language.destroy');
-
-Route::get('/skill', [UserSkillController::class, 'create'])->name('skill.create');
-Route::post('/skill', [UserSkillController::class, 'store'])->name('skill.store');
-Route::get('/skill/{id_skill}/edit', [UserSkillController::class, 'edit'])->name('skill.edit');
-Route::patch('/skill/{id_skill}/edit', [UserSkillController::class, 'update'])->name('skill.update');
-Route::delete('/skill/{id_skill}/delete', [UserSkillController::class, 'destroy'])->name('skill.destroy');
-
-Route::get('/education', [UserEducationController::class, 'create'])->name('education.create');
-Route::post('/education', [UserEducationController::class, 'store'])->name('education.store');
-Route::get('/education/{id_education}/edit', [UserEducationController::class, 'edit'])->name('education.edit');
-Route::patch('/education/{id_education}/edit', [UserEducationController::class, 'update'])->name('education.update');
-Route::delete('/education/{id_education}/delete', [UserEducationController::class, 'destroy'])->name('education.destroy');
-
-Route::get('/certification', [UserCertificationController::class, 'create'])->name('certification.create');
-Route::post('/certification', [UserCertificationController::class, 'store'])->name('certification.store');
-Route::get('/certification/{id_certification}/edit', [UserCertificationController::class, 'edit'])->name('certification.edit');
-Route::patch('/certification/{id_certification}/edit', [UserCertificationController::class, 'update'])->name('certification.update');
-Route::delete('/certification/{id_certification}/delete', [UserCertificationController::class, 'destroy'])->name('certification.destroy');
+Route::patch('/gigs/{id_service}/edit', [ServiceController::class, 'update'])->name('service.update');
+Route::delete('/gigs/{id_service}/delete', [ServiceController::class, 'destroy'])->name('service.destroy');
+Route::delete('/gigs/{id_service}/deleteadmin', [ServiceController::class, 'destroyAdmin'])->name('service.admin.destroy');
 
 Route::get('/profile_page/{id}', [ProfilePageController::class, 'show'])->name('profile.page.show');
 
-// Route::get('/addgigs', function(){
-//     return view('addgigs');
-// });
 
-// Route::get('/manage_order', function(){
-//     return view('manage_order');
-// });
-
-
-Route::get('/report', function(){
+Route::get('/report', function () {
     return view('report');
 });
 
-Route::get('/wishlist', function(){
+Route::get('/wishlist', function () {
     return view('wishlist');
 });
-
-// Route::get('/searchfilter', function(){
-//     return view('searchfilter');
-// });
-
-
-// Route::get('/subcategory', function(){
-//     return view('subcategory');
-// });
 
 Route::get('/test-relationships', function () {
     // Create a category
@@ -183,7 +138,7 @@ Route::get('/test-user-skill-relationship', function () {
     ]);
 
     // Create sample data for each relationship
-   $user->userskill()->create(['skill' => 'Programming', 'experience_level' => 'Intermediate']);
+    $user->userskill()->create(['skill' => 'Programming', 'experience_level' => 'Intermediate']);
 
     // Retrieve the user with their associated data
     $userWithRelatedData = User::with([
@@ -194,16 +149,4 @@ Route::get('/test-user-skill-relationship', function () {
     dd($user, $userWithRelatedData);
 });
 
-//Route::post('/register_user_language', [UserLanguageController::class, 'store']);
-
-// Route::post('/register_user_skill', [UserSkillController::class, 'store']);
-
-// Route::post('/register_user_education', [UserEducationController::class, 'store']);
-
-// Route::post('/register_user_certification', [UserCertificationController::class, 'store']);
-
-// Route::post('/register_user_notification', [UserNotificationController::class, 'store']);
-
-// Route::post('/register_user_review', [UserReviewController::class, 'store']);
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
