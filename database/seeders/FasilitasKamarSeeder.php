@@ -14,7 +14,7 @@ class FasilitasKamarSeeder extends Seeder
     public function run(): void
     {
         // Category::factory()->count(5)->create();
-        $fasilitas = ['K. Mandi Dalam', 'Air Panas', 'Lemari Baju', 'AC', 'Kursi', 'Jendela', 'Kloset Duduk', 'Kasur', 'TV', 'Meja', 'Kipas Angin', 'Termasuk Listrik', 'WiFi', 'Mesin Cuci'];
+        $fasilitas = ['K. Mandi Dalam', 'Air Panas', 'Lemari Baju', 'AC', 'Kursi', 'Jendela', 'Kasur', 'TV', 'Meja', 'Kipas Angin', 'Termasuk Listrik', 'WiFi', 'Mesin Cuci'];
         
         $i = 1;
         for ($id = 1; $id <= 150; $id++) {

@@ -71,7 +71,7 @@
                     </div>
                     <div class="w-2/3 flex">
                         @php
-                            $fasilitas = ['K. Mandi Dalam', 'Air Panas', 'Lemari Baju', 'AC', 'Kursi', 'Jendela', 'Kloset Duduk', 'Kasur', 'TV', 'Meja', 'Kipas Angin', 'Termasuk Listrik', 'WiFi', 'Mesin Cuci'];
+                            $fasilitas = ['K. Mandi Dalam', 'Air Panas', 'Lemari Baju', 'AC', 'Kursi', 'Jendela', 'Kasur', 'TV', 'Meja', 'Kipas Angin', 'Termasuk Listrik', 'WiFi', 'Mesin Cuci'];
                         @endphp
 
                         <div class="font-semibold text-l text-gray-800 leading-tight w-2/5">
@@ -102,7 +102,7 @@
                     </div>
                     <div class="w-2/3 flex">
                         @php
-                            $fasilitas = ['Ember Mandi', 'Kloset Duduk', 'Shower' ];                        
+                            $fasilitas = ['Ember Mandi', 'Kloset Duduk', 'Shower', 'Kloset Jongkok'];                        
                         @endphp
 
                         <div class="font-semibold text-l text-gray-800 leading-tight w-2/5">
