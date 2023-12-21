@@ -12,12 +12,13 @@
             style="background-image: url('{{ asset('images/hero_back.svg') }}'); height: 500px;">
             <div class="mx-auto max-w-7xl py-32">
                 <div class="text-center">
-                    <h1 class="sm:text-5xl text-4xl  font-extrabold text-white drop-shadow-md">
+                    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white drop-shadow-md">
                         Mau cari Kost mudah dan cepat?
                     </h1>
-                    <h4 class="md:text-2xl font-extrabold tracking-tight text-white">
+                    <h4 class="text-base md:text-2xl font-extrabold tracking-tight text-white">
                         dengan durasi sewa fleksibel harian & bulanan
                     </h4>
+
                     <div class="mt-10 flex items-center justify-center gap-x-6">
                         <div class="ml-5 w-4/5">
                             <form action="{{ route('service.filter') }}" method="POST"
