@@ -25,8 +25,7 @@
                                 class="flex items-center justify-center">
                                 @csrf
                                 <x-text-input id="search_bar" name="search_bar" type="text"
-                                    class="mt-1 block w-11/12 p-3"
-                                    placeholder="What service are you looking for today?" />
+                                    class="mt-1 block w-11/12 p-3" placeholder="Kos apa yang kamu cari?" />
                                 <button type="submit"
                                     class="rounded-md bg-yellow-300 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-300 ml-2">
                                     Cari
@@ -39,11 +38,11 @@
             </div>
         </div>
 
-        <div class="py-10">
+        <div class="py-10 mt-20">
             <div class="flex">
                 <div class="grid grid-cols-1 sm:grid-cols-2 w-full sm:w-8/12 mx-auto">
                     <div class="flex items-center col-span-2 sm:col-span-1 mx-auto">
-                        <div class="text-3xl font-bold text-stone-900" id="rekomendasi">Rekomendasi kos di</div>
+                        <div class="p-5 text-3xl font-bold text-stone-900" id="rekomendasi">Rekomendasi kos di</div>
                         <div class="relative ml-2" id="dropdownButton">
                             <div onclick="toggleDropdown()" id="dropdownButtonContent"
                                 class="border-solid border-stone-900 border-[1px] px-5 py-2 rounded-lg cursor-pointer font-bold flex justify-between items-center bg-white shadow-sm">
@@ -66,7 +65,7 @@
                         </div>
                     </div>
 
-                    <div class="flex justify-end col-span-1 mx-auto mt-4 sm:mt-0">
+                    <div class="p-5 flex justify-end col-span-1 mx-auto mt-4 sm:mt-0">
                         <div class="inline-flex rounded-md right-0">
                             <a href="https://github.com/themesberg/flowbite/blob/main/content/components/button-group.md"
                                 rel="noopener nofollow noreferrer"
@@ -104,13 +103,22 @@
                             <div class="border rounded-lg p-5 h-full">
                                 <img class="h-50 w-full object-cover rounded-md"
                                     src="{{ asset('images/gambar_1.jpg') }}" alt="">
-                                <h2 class="mt-2 text-2xl font-bold text-stone-900">{{ $service->title }}</h2>
-                                <p class="mt-2 text-stone-900">
-                                    Harga Rp.{{ $service->harga_per_bulan }}
+                                <h2 class="mt-2 text-xl text-stone-900">{{ $service->title }}</h2>
+                                <div class="flex items-center mt-2 text-stone-900">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                                    </svg>
+                                    <p class="ml-2">{{ $service->subcategory->subcategory_name }}</p>
+                                </div>
+
+                                <p class="mt-2 text-stone-900 text-right text-2xl font-black">
+                                    Rp.{{ $service->harga_per_bulan }}
                                 </p>
-                                <p class="mt-2 text-stone-900">
-                                    Lokasi : {{ $service->subcategory->subcategory_name }}
-                                </p>
+
                             </div>
                         </li>
                         @endforeach

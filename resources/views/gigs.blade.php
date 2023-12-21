@@ -30,6 +30,17 @@
                 <div class="mt-8 text-3xl font-bold">
                     {{ $service->title}}
                 </div>
+                <p class="ml-2">jalan. Keputih tegal timur .....</p>
+                <div class="flex items-center mt-2 text-stone-900">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" data-slot="icon" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                    </svg>
+                    <p class="ml-2">{{ $service->subcategory->subcategory_name }}</p>
+                </div>
 
                 <div class="mt-5">
                     <div id="default-carousel" class="relative w-full" data-carousel="static">
@@ -42,14 +53,12 @@
                                     class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                                     alt="image-service">
                                 @else
-                                <img src="{{ asset('images/Thinker-Auguste-Rodin-Museum-Paris-1904.jpg') }}"
+                                <img src="{{ asset('images/gambar_1.jpg') }}"
                                     class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                                     alt="...">
                                 @endif
                             </div>
-
                         </div>
-
                     </div>
 
                     <div class="mt-10">
@@ -61,6 +70,186 @@
                         </div>
                     </div>
 
+                    <div class="mt-12 border border-gray-300 w-9/12 p-5">
+                        <div>
+                            <div class="font-semibold text-2xl">
+                                Deskripsi Kost
+                            </div>
+                            {{ $service->description }}
+                        </div>
+                        <div class="flex border-t border-gray-300 mt-5 py-2 font-semibold">
+                            <div class="w-full">
+                                <div class="font-semibold text-2xl">
+                                    Fasilitas Kamar
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4 mt-5">
+                                    @foreach($fasilitasKamar as $fasilitas)
+                                    <div class="font-normal flex items-center">
+                                        @if($fasilitas === 'K. Mandi Dalam')
+                                        <img data-v-3d87c57a="" data-testid="detail-kost-facility__icon"
+                                            alt="K. Mandi Dalam" class="detail-kost-facility-item__icon-image"
+                                            data-src="https://static.mamikos.com/uploads/tags/b8yekhj4.png"
+                                            src="https://static.mamikos.com/uploads/tags/b8yekhj4.png" lazy="loaded"
+                                            style="filter: grayscale(100%); width: 20px; height: 20px;">
+                                        @endif
+
+                                        @if($fasilitas === 'Lemari Baju')
+                                        <img style="filter: grayscale(100%); width: 20px; height: 20px;"
+                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon"
+                                            alt="Lemari Baju" class="detail-kost-facility-item__icon-image"
+                                            data-src="https://static.mamikos.com/uploads/tags/egu43HCg.png"
+                                            src="https://static.mamikos.com/uploads/tags/egu43HCg.png" lazy="loaded">
+                                        @endif
+
+                                        @if($fasilitas === 'Air Panas')
+                                        <img style="filter: grayscale(100%); width: 20px; height: 20px;"
+                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="Air panas"
+                                            class="detail-kost-facility-item__icon-image"
+                                            data-src="https://static.mamikos.com/uploads/tags/zKWuh5ma.png"
+                                            src="https://static.mamikos.com/uploads/tags/zKWuh5ma.png" lazy="loaded">
+                                        @endif
+
+                                        @if($fasilitas === 'AC')
+                                        <img style="filter: grayscale(100%); width: 20px; height: 20px;"
+                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="AC"
+                                            class="detail-kost-facility-item__icon-image"
+                                            data-src="https://static.mamikos.com/uploads/tags/lqunlyi8.png"
+                                            src="https://static.mamikos.com/uploads/tags/lqunlyi8.png" lazy="loaded">
+                                        @endif
+
+                                        @if($fasilitas === 'Kursi')
+                                        <img style="filter: grayscale(100%); width: 20px; height: 20px;"
+                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="Kursi"
+                                            class="detail-kost-facility-item__icon-image"
+                                            data-src="https://static.mamikos.com/uploads/tags/MB9milt9.png"
+                                            src="https://static.mamikos.com/uploads/tags/MB9milt9.png" lazy="loaded">
+                                        @endif
+
+                                        @if($fasilitas === 'Jendela')
+                                        <img style="filter: grayscale(100%); width: 20px; height: 20px;"
+                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="Jendela"
+                                            class="detail-kost-facility-item__icon-image"
+                                            data-src="https://static.mamikos.com/uploads/tags/PAsBbxrm.png"
+                                            src="https://static.mamikos.com/uploads/tags/PAsBbxrm.png" lazy="loaded">
+                                        @endif
+
+                                        @if($fasilitas === 'Kasur')
+                                        <img style="filter: grayscale(100%); width: 20px; height: 20px;"
+                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="Kasur"
+                                            class="detail-kost-facility-item__icon-image"
+                                            data-src="https://static.mamikos.com/uploads/tags/Y4ZfXUdX.png"
+                                            src="https://static.mamikos.com/uploads/tags/Y4ZfXUdX.png" lazy="loaded">
+                                        @endif
+
+                                        @if($fasilitas === 'TV')
+                                        <img style="filter: grayscale(100%); width: 20px; height: 20px;"
+                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="TV"
+                                            class="detail-kost-facility-item__icon-image"
+                                            data-src="https://static.mamikos.com/uploads/tags/ZYjIeqGp.png"
+                                            src="https://static.mamikos.com/uploads/tags/ZYjIeqGp.png" lazy="loaded">
+                                        @endif
+
+                                        @if($fasilitas === 'Meja')
+                                        <img style="filter: grayscale(100%); width: 20px; height: 20px;"
+                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="Meja"
+                                            class="detail-kost-facility-item__icon-image"
+                                            data-src="https://static.mamikos.com/uploads/tags/nluOWsFG.png"
+                                            src="https://static.mamikos.com/uploads/tags/nluOWsFG.png" lazy="loaded">
+                                        @endif
+
+                                        @if($fasilitas === 'Kipas Angin')
+                                        <img style="filter: grayscale(100%); width: 20px; height: 20px;"
+                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon"
+                                            alt="Kipas Angin" class="detail-kost-facility-item__icon-image"
+                                            data-src="https://static.mamikos.com/uploads/tags/gQ6hjpk3.png"
+                                            src="https://static.mamikos.com/uploads/tags/gQ6hjpk3.png" lazy="loaded">
+                                        @endif
+
+                                        @if($fasilitas === 'Termasuk Listrik')
+                                        <img style="filter: grayscale(100%); width: 20px; height: 20px;"
+                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon"
+                                            alt="Termasuk listrik" class="detail-kost-facility-item__icon-image"
+                                            data-src="https://static.mamikos.com/uploads/tags/GIUdAv2J.png"
+                                            src="https://static.mamikos.com/uploads/tags/GIUdAv2J.png" lazy="loaded">
+                                        @endif
+
+                                        @if($fasilitas === 'Wifi')
+                                        <img style="filter: grayscale(100%); width: 20px; height: 20px;"
+                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="WiFi"
+                                            class="detail-kost-facility-item__icon-image"
+                                            data-src="https://static.mamikos.com/uploads/tags/HAAjIo8D.png"
+                                            src="https://static.mamikos.com/uploads/tags/HAAjIo8D.png" lazy="loaded">
+                                        @endif
+
+                                        @if($fasilitas === 'Mesin Cuci')
+                                        <img style="filter: grayscale(100%); width: 20px; height: 20px;"
+                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="Mesin Cuci"
+                                            class="detail-kost-facility-item__icon-image"
+                                            data-src="https://static.mamikos.com/uploads/tags/nFsJ8SPt.png"
+                                            src="https://static.mamikos.com/uploads/tags/nFsJ8SPt.png" lazy="loaded">
+                                        @endif
+
+                                        <div class="text-lg ml-2">
+                                            {{ $fasilitas }}
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex border-t border-gray-300 mt-5 py-2 font-semibold">
+                            <div class="w-full">
+                                <div class="font-semibold text-2xl">
+                                    Fasilitas Kamar Mandi
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4 mt-5">
+                                    @foreach($fasilitasKamarMandi as $fasilitas)
+                                    <div class="font-normal flex items-center">
+
+                                        @if($fasilitas === 'Kloset Duduk')
+                                        <img style="filter: grayscale(100%); width: 20px; height: 20px;"
+                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon"
+                                            alt="Kloset Duduk" class="detail-kost-facility-item__icon-image"
+                                            data-src="https://static.mamikos.com/uploads/tags/TyT47meW.png"
+                                            src="https://static.mamikos.com/uploads/tags/TyT47meW.png" lazy="loaded">
+                                        @endif
+
+                                        @if($fasilitas === 'Shower')
+                                        <img style="filter: grayscale(100%); width: 20px; height: 20px;"
+                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="Shower"
+                                            class="detail-kost-facility-item__icon-image"
+                                            data-src="https://static.mamikos.com/uploads/tags/cbxCWmko.png"
+                                            src="https://static.mamikos.com/uploads/tags/cbxCWmko.png" lazy="loaded">
+                                        @endif
+
+                                        @if($fasilitas === 'Ember Mandi')
+                                        <img style="filter: grayscale(100%); width: 20px; height: 20px;"
+                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon"
+                                            alt="Ember mandi" class="detail-kost-facility-item__icon-image"
+                                            data-src="https://static.mamikos.com/uploads/tags/B71K93ll.png"
+                                            src="https://static.mamikos.com/uploads/tags/B71K93ll.png" lazy="loaded">
+                                        @endif
+
+                                        @if($fasilitas === 'Kloset Jongkok')
+                                        <img style="filter: grayscale(100%); width: 20px; height: 20px;"
+                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon"
+                                            alt="Kloset Jongkok" class="detail-kost-facility-item__icon-image"
+                                            data-src="https://static.mamikos.com/uploads/tags/7JtETpII.png"
+                                            src="https://static.mamikos.com/uploads/tags/7JtETpII.png" lazy="loaded">
+                                        @endif
+
+                                        <div class="text-lg ml-2">
+                                            {{ $fasilitas }}
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="mt-20 text-lg font-semibold">
                         Mengenai penyewa kos
@@ -113,195 +302,6 @@
                             Me</button>
                     </div>
 
-                    <div class="mt-12 border border-gray-300 w-full p-5">
-                        <div>
-                            <div class="font-semibold text-2xl">
-                                Deskripsi Kost
-                            </div>
-                            {{ $service->description }}
-                        </div>
-                        <div class="flex border-t border-gray-300 mt-5 py-2 font-semibold">
-                            <div class="w-full">
-                                <div class="font-semibold text-2xl">
-                                    Fasilitas Kamar
-                                </div>
-
-                                <div class="grid grid-cols-2 gap-4 mt-5">
-                                    @foreach($fasilitasKamar as $fasilitas)
-                                    <div class="font-normal flex items-center">
-                                        @if($fasilitas === 'K. Mandi Dalam')
-                                        <img data-v-3d87c57a="" data-testid="detail-kost-facility__icon"
-                                            alt="K. Mandi Dalam" class="detail-kost-facility-item__icon-image"
-                                            data-src="https://static.mamikos.com/uploads/tags/b8yekhj4.png"
-                                            src="https://static.mamikos.com/uploads/tags/b8yekhj4.png" lazy="loaded"
-                                            style="filter: grayscale(100%); width: 40px; height: 40px;">
-                                        @endif
-
-                                        @if($fasilitas === 'Lemari Baju')
-                                        <img style="filter: grayscale(100%); width: 40px; height: 40px;"
-                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon"
-                                            alt="Lemari Baju" class="detail-kost-facility-item__icon-image"
-                                            data-src="https://static.mamikos.com/uploads/tags/egu43HCg.png"
-                                            src="https://static.mamikos.com/uploads/tags/egu43HCg.png" lazy="loaded">
-                                        @endif
-
-                                        @if($fasilitas === 'Air Panas')
-                                        <img style="filter: grayscale(100%); width: 40px; height: 40px;"
-                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="Air panas"
-                                            class="detail-kost-facility-item__icon-image"
-                                            data-src="https://static.mamikos.com/uploads/tags/zKWuh5ma.png"
-                                            src="https://static.mamikos.com/uploads/tags/zKWuh5ma.png" lazy="loaded">
-                                        @endif
-
-                                        @if($fasilitas === 'AC')
-                                        <img style="filter: grayscale(100%); width: 40px; height: 40px;"
-                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="AC"
-                                            class="detail-kost-facility-item__icon-image"
-                                            data-src="https://static.mamikos.com/uploads/tags/lqunlyi8.png"
-                                            src="https://static.mamikos.com/uploads/tags/lqunlyi8.png" lazy="loaded">
-                                        @endif
-
-                                        @if($fasilitas === 'Kursi')
-                                        <img style="filter: grayscale(100%); width: 40px; height: 40px;"
-                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="Kursi"
-                                            class="detail-kost-facility-item__icon-image"
-                                            data-src="https://static.mamikos.com/uploads/tags/MB9milt9.png"
-                                            src="https://static.mamikos.com/uploads/tags/MB9milt9.png" lazy="loaded">
-                                        @endif
-
-                                        @if($fasilitas === 'Jendela')
-                                        <img style="filter: grayscale(100%); width: 40px; height: 40px;"
-                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="Jendela"
-                                            class="detail-kost-facility-item__icon-image"
-                                            data-src="https://static.mamikos.com/uploads/tags/PAsBbxrm.png"
-                                            src="https://static.mamikos.com/uploads/tags/PAsBbxrm.png" lazy="loaded">
-                                        @endif
-
-                                        @if($fasilitas === 'Kasur')
-                                        <img style="filter: grayscale(100%); width: 40px; height: 40px;"
-                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="Kasur"
-                                            class="detail-kost-facility-item__icon-image"
-                                            data-src="https://static.mamikos.com/uploads/tags/Y4ZfXUdX.png"
-                                            src="https://static.mamikos.com/uploads/tags/Y4ZfXUdX.png" lazy="loaded">
-                                        @endif
-
-                                        @if($fasilitas === 'TV')
-                                        <img style="filter: grayscale(100%); width: 40px; height: 40px;"
-                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="TV"
-                                            class="detail-kost-facility-item__icon-image"
-                                            data-src="https://static.mamikos.com/uploads/tags/ZYjIeqGp.png"
-                                            src="https://static.mamikos.com/uploads/tags/ZYjIeqGp.png" lazy="loaded">
-                                        @endif
-
-                                        @if($fasilitas === 'Meja')
-                                        <img style="filter: grayscale(100%); width: 40px; height: 40px;"
-                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="Meja"
-                                            class="detail-kost-facility-item__icon-image"
-                                            data-src="https://static.mamikos.com/uploads/tags/nluOWsFG.png"
-                                            src="https://static.mamikos.com/uploads/tags/nluOWsFG.png" lazy="loaded">
-                                        @endif
-
-                                        @if($fasilitas === 'Kipas Angin')
-                                        <img style="filter: grayscale(100%); width: 40px; height: 40px;"
-                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon"
-                                            alt="Kipas Angin" class="detail-kost-facility-item__icon-image"
-                                            data-src="https://static.mamikos.com/uploads/tags/gQ6hjpk3.png"
-                                            src="https://static.mamikos.com/uploads/tags/gQ6hjpk3.png" lazy="loaded">
-                                        @endif
-
-                                        @if($fasilitas === 'Termasuk Listrik')
-                                        <img style="filter: grayscale(100%); width: 40px; height: 40px;"
-                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon"
-                                            alt="Termasuk listrik" class="detail-kost-facility-item__icon-image"
-                                            data-src="https://static.mamikos.com/uploads/tags/GIUdAv2J.png"
-                                            src="https://static.mamikos.com/uploads/tags/GIUdAv2J.png" lazy="loaded">
-                                        @endif
-
-                                        @if($fasilitas === 'Wifi')
-                                        <img style="filter: grayscale(100%); width: 40px; height: 40px;"
-                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="WiFi"
-                                            class="detail-kost-facility-item__icon-image"
-                                            data-src="https://static.mamikos.com/uploads/tags/HAAjIo8D.png"
-                                            src="https://static.mamikos.com/uploads/tags/HAAjIo8D.png" lazy="loaded">
-                                        @endif
-
-                                        @if($fasilitas === 'Mesin Cuci')
-                                        <img style="filter: grayscale(100%); width: 40px; height: 40px;"
-                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="Mesin Cuci"
-                                            class="detail-kost-facility-item__icon-image"
-                                            data-src="https://static.mamikos.com/uploads/tags/nFsJ8SPt.png"
-                                            src="https://static.mamikos.com/uploads/tags/nFsJ8SPt.png" lazy="loaded">
-                                        @endif
-
-                                        <div class="text-lg ml-2">
-                                            {{ $fasilitas }}
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-
-
-
-                        </div>
-
-                        <div class="flex border-t border-gray-300 mt-5 py-2 font-semibold">
-                            <div class="w-full">
-                                <div class="font-semibold text-2xl">
-                                    Fasilitas Kamar Mandi
-                                </div>
-
-                                <div class="grid grid-cols-2 gap-4 mt-5">
-                                    @foreach($fasilitasKamarMandi as $fasilitas)
-                                    <div class="font-normal flex items-center">
-
-                                        @if($fasilitas === 'Kloset Duduk')
-                                        <img style="filter: grayscale(100%); width: 40px; height: 40px;"
-                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon"
-                                            alt="Kloset Duduk" class="detail-kost-facility-item__icon-image"
-                                            data-src="https://static.mamikos.com/uploads/tags/TyT47meW.png"
-                                            src="https://static.mamikos.com/uploads/tags/TyT47meW.png" lazy="loaded">
-                                        @endif
-
-                                        @if($fasilitas === 'Shower')
-                                        <img style="filter: grayscale(100%); width: 40px; height: 40px;"
-                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon" alt="Shower"
-                                            class="detail-kost-facility-item__icon-image"
-                                            data-src="https://static.mamikos.com/uploads/tags/cbxCWmko.png"
-                                            src="https://static.mamikos.com/uploads/tags/cbxCWmko.png" lazy="loaded">
-                                        @endif
-
-                                        @if($fasilitas === 'Ember Mandi')
-                                        <img style="filter: grayscale(100%); width: 40px; height: 40px;"
-                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon"
-                                            alt="Ember mandi" class="detail-kost-facility-item__icon-image"
-                                            data-src="https://static.mamikos.com/uploads/tags/B71K93ll.png"
-                                            src="https://static.mamikos.com/uploads/tags/B71K93ll.png" lazy="loaded">
-                                        @endif
-
-                                        @if($fasilitas === 'Kloset Jongkok')
-                                        <img style="filter: grayscale(100%); width: 40px; height: 40px;"
-                                            data-v-3d87c57a="" data-testid="detail-kost-facility__icon"
-                                            alt="Kloset Jongkok" class="detail-kost-facility-item__icon-image"
-                                            data-src="https://static.mamikos.com/uploads/tags/7JtETpII.png"
-                                            src="https://static.mamikos.com/uploads/tags/7JtETpII.png" lazy="loaded">
-                                        @endif
-
-
-                                        <div class="text-lg ml-2">
-                                            {{ $fasilitas }}
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-
-
-
-                        </div>
-
-                    </div>
-
                     <div class="mt-20 text-lg font-semibold">
                         Reviews
                     </div>
@@ -335,22 +335,21 @@
                     </div>
 
                     <div class="w-full border-gray-300 border mt-12"></div>
+
                     @if(count($reviews) > 0)
                     @foreach($reviews as $review)
-
                     <div class="mt-8">
-                        <div class="flex">
+                        <div class="flex flex-col md:flex-row">
                             <img src="{{ asset('images/Thinker-Auguste-Rodin-Museum-Paris-1904.jpg') }}"
-                                alt="Example Image" class="rounded-full h-14 w-14">
-                            <div>
-                                <div class="ml-4 font-semibold text-lg">
+                                alt="Example Image" class="rounded-full h-14 w-14 md:h-16 md:w-16">
 
+                            <div class="md:ml-4 mt-2 md:mt-0">
+                                <div class="font-semibold text-lg">
                                     {{$review->user_name}}
-
                                 </div>
-                                <div class="ml-4 flex items-center">
-                                    <svg class="h-4 w-4 black width=" 24" height="24" viewBox="0 0 24 24"
-                                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                <div class="flex items-center">
+                                    <svg class="h-4 w-4 md:h-5 md:w-5 black" viewBox="0 0 24 24" stroke-width="2"
+                                        stroke="currentColor" fill="none" stroke-linecap="round"
                                         stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" />
                                         <path
@@ -363,22 +362,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full">
-                            <div class="ml-16 px-3 text-justify">
+
+                        <div class="mt-4 md:mt-0">
+                            <div class="ml-0 md:ml-16 px-3 text-justify">
                                 {{$review->review_description}}
                             </div>
                         </div>
+
                         <div class="w-full border-gray-300 border mt-8"></div>
                     </div>
                     @endforeach
                     @else
                     <div class="mt-8">
                         <div>
-                            No review avalaible
+                            No reviews available
                         </div>
                     </div>
                     @endif
-
                 </div>
             </div>
 
@@ -403,7 +403,7 @@
                                 Report Service
                             </a>
                         </div>
-                        
+
                         @if(auth()->user()->isAdmin)
                         <div class="border border-gray-400 rounded-md px-2 py-1 ml-3">
                             <form method="POST"
@@ -456,7 +456,7 @@
                                     {{$service->basic_plan_days}} days delivery
                                 </div>
                             </div>
-                          
+
                             <form
                                 action="{{ route('store.transaction', ['id' => $service->id, 'package' => 'basic']) }}"
                                 method="POST">
@@ -468,7 +468,7 @@
                                     </button>
                                 </div>
                             </form>
-                           
+
                         </div>
                         <div class="tab-content hidden" id="standardContent">
                             <div class="flex px-5 font-semibold">
@@ -497,7 +497,7 @@
                                     {{$service->standard_plan_days}} days delivery
                                 </div>
                             </div>
-                        
+
                             <form
                                 action="{{ route('store.transaction', ['id' => $service->id, 'package' => 'standard']) }}"
                                 method="POST">
@@ -552,12 +552,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
