@@ -42,7 +42,7 @@
                                     Member sejak:
                                 </div>
                                 <div class="w-1/2 text-right">
-                                    {{ Auth::user()->created_at->format('j F Y') }}
+                                    {{ $user->created_at->format('j F Y') }}
                                 </div>
                             </div>
                         </div>

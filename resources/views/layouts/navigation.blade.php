@@ -25,6 +25,22 @@
             <div class="hidden lg:flex  lg:gap-x-12 lg:flex-1 lg:justify-end">
                 <a href="#" class="text-sm font-semibold leading-6 text-gray-900 px-3 py-2">Cari Kost?</a>
                 <a href="#" class="text-sm font-semibold leading-6 text-gray-900 px-3 py-2">Features</a>
+                @guest
+                <div>
+                    <a href="{{ route('login') }}">
+                        <button type="button" class="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 me-2 mb-2">
+                            Login
+                        </button>
+                    </a>
+                    <a href="{{ route('register') }}">
+                        <button type="button" class="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 me-2 mb-2">
+                            Register
+                        </button>
+                    </a>
+                
+                </div>
+                @endguest
+                @auth  
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
@@ -42,6 +58,7 @@
                         </button>
                     </x-slot>
 
+                     
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.show')">
                             {{ __('Profile') }}
@@ -82,6 +99,7 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
+                @endauth
             </div>
         </nav>
 
@@ -112,6 +130,8 @@
                                 Kost?</a>
                             <a href="#"
                                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
+                               
+                                @auth 
                             <x-dropdown align="left" width="48">
                                 <x-slot name="trigger">
                                     <button
@@ -171,6 +191,7 @@
                                     </form>
                                 </x-slot>
                             </x-dropdown>
+                            @endauth 
                         </div>
                         <div class="py-6">
                             <a href="#"

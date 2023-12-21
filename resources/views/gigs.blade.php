@@ -396,12 +396,14 @@
                                 <line x1="8.7" y1="13.3" x2="15.3" y2="16.7" />
                             </svg>
                         </div>
+                        @auth
                         <div class="border border-gray-400 rounded-md px-2 py-1 ml-3">
                             <a href="{{ route('report.show', ['id' => $service->id]) }}"
                                 class="text-decoration-none hover:underline">
                                 Report Service
                             </a>
                         </div>
+                        
                         @if(auth()->user()->isAdmin)
                         <div class="border border-gray-400 rounded-md px-2 py-1 ml-3">
                             <form method="POST"
@@ -412,6 +414,7 @@
                             </form>
                         </div>
                         @endif
+                        @endauth
 
                     </div>
                     <div class="flex mt-5">
@@ -453,6 +456,7 @@
                                     {{$service->basic_plan_days}} days delivery
                                 </div>
                             </div>
+                          
                             <form
                                 action="{{ route('store.transaction', ['id' => $service->id, 'package' => 'basic']) }}"
                                 method="POST">
@@ -464,7 +468,7 @@
                                     </button>
                                 </div>
                             </form>
-
+                           
                         </div>
                         <div class="tab-content hidden" id="standardContent">
                             <div class="flex px-5 font-semibold">
@@ -493,6 +497,7 @@
                                     {{$service->standard_plan_days}} days delivery
                                 </div>
                             </div>
+                        
                             <form
                                 action="{{ route('store.transaction', ['id' => $service->id, 'package' => 'standard']) }}"
                                 method="POST">

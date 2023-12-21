@@ -30,11 +30,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/dashboard', [ServiceController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::redirect('/', '/dashboard');
+
+// Route::get('/dashboard', [ServiceController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard', [ServiceController::class, 'index'])->name('dashboard');
 
 Route::get('/services/{id}/{user_id}', [ServiceController::class, 'show'])->name('service.show');
 
