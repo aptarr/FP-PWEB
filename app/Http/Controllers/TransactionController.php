@@ -47,17 +47,17 @@ class TransactionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function storeTransaction($id, $package)
+    public function storeTransaction(Request $request, $id)
     {
         $user = Auth::user();
+        //dd($request);
 
         // Your code to perform the transaction goes here
         // Example:
         $user->transaction()->create([
-            'quantity' => 1,
-            'status' => "pending",
-            'package' => $package,
-            'deliverable' => "temp",
+            'lama_sewa' => $request->input('lama_sewa'),
+            'tanggal_mulai_sewa' => $request->input('date'),
+            'harga_total' => $request->input('harga_total'),
             'isReview' => 0,
             'user_id' => $user->id,
             'service_id' => $id,

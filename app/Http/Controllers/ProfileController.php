@@ -21,17 +21,10 @@ class ProfileController extends Controller
     {
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
-        $languages = User::find($user_id)->userlanguage()->get();
-        $skills = User::find($user_id)->userskill()->get();
-        $educations = User::find($user_id)->usereducation()->get();
-        $certifications = User::find($user_id)->usercertification()->get();
         $services = User::find($user_id)->service()->get();
         return view('profile.show', [
             'user' => $user,
-            'languages' => $languages,
-            'skills' => $skills,
-            'educations' => $educations,
-            'certifications' => $certifications,
+
             'services' => $services,
         ]);
     }

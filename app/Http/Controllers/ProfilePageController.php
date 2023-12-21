@@ -11,10 +11,7 @@ class ProfilePageController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $languages = User::find($id)->userlanguage()->get();
-        $skills = User::find($id)->userskill()->get();
-        $educations = User::find($id)->usereducation()->get();
-        $certifications = User::find($id)->usercertification()->get();
+
         $services = User::find($id)->service()->get();
 
         $services = Service::join('users', 'services.user_id', '=', 'users.id')
@@ -28,6 +25,6 @@ class ProfilePageController extends Controller
         ->groupBy('services.id', 'users.name') // Include 'total_reviews' in the grouping
         ->get();
 
-        return view('profile_page', compact('user', 'languages', 'skills', 'educations', 'certifications', 'services'));
+        return view('profile_page', compact('user', 'services'));
     }
 }

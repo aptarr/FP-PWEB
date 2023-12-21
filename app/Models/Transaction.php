@@ -19,8 +19,9 @@ class Transaction extends Model
     // ];
 
     protected $fillable = [
-        'quantity',
-        'status',
+        'lama_sewa',
+        'tanggal_mulai_sewa',
+        'harga_total',
         'service_id',
         'harga_total',
         'isReview',

@@ -417,180 +417,151 @@
                         @endauth
 
                     </div>
-                    <div class="flex mt-5">
-                        <div class="border border-gray-300 w-32 py-3 text-center tab active" data-tab="basic">
-                            Basic
-                        </div>
-                        <div class="border border-gray-300 w-32 py-3 text-center tab inactive" data-tab="standard">
-                            Standard
-                        </div>
-                        <div class="border border-gray-300 w-32 py-3 text-center tab inactive" data-tab="premium">
-                            Premium
-                        </div>
-                    </div>
+                    
+                    <div class="mt-5"></div>
                     <div class="border border-gray-300 py-5">
-                        <div class="tab-content" id="basicContent">
-                            <div class="flex px-5 font-semibold">
-                                <div class="w-1/2">
-                                    {{$service->basic_plan_title}}
-                                </div>
-                                <div class="w-1/2 flex justify-end">
-                                    ${{$service->basic_plan_price}}
-                                </div>
+   
+                        <form method="POST" action="{{ route('store.transaction', ['id' => $service->id]) }}" enctype="multipart/form-data">
+                        @csrf
+                        <div>
+                            <div class="mx-4 mt-2 text-stone-900 text-left text-xl font-semibold flex">
+                                Rp{{ number_format($service->harga_per_bulan, 0, ',', '.') }} (Bulan pertama)
+                               
                             </div>
-                            <div class="flex mt-5 px-5">
-                                <div class="w-80 text-justify">
-                                    {{$service->basic_plan_description}}
+                            
+                            <div class="flex">
+                                <div class="relative w-2/5 mx-4 mt-4">
+                                    <!-- <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                        </svg>
+                                    </div> -->
+                                    <!-- <input datepicker datepicker-autohide id="date" name="date" type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Mulai Kos"> -->
+
+
+                                    <input id="date" name="date" type="date">
+                                </div>
+                                <div class="relative w-2/5 mx-4 mt-4">
+                                    <select id="lama_sewa" name="lama_sewa" class= "form-control bg-white border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option selected disabled>Pilih Lama Sewa</option>
+                                        <option value="1">Per Bulan</option>
+                                        <option value="3">Per 3 Bulan</option>
+                                        <option value="6">Per 6 Bulan</option>
+                                        <option value="12">Per Tahun</option>
+                                    </select>
                                 </div>
                             </div>
 
-                            <div class="mt-2 px-5 flex">
-                                <svg class="h-6 w-6 text-black" width="24" height="24" viewBox="0 0 24 24"
-                                    stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                    <circle cx="12" cy="12" r="9" />
-                                    <polyline points="12 7 12 12 15 15" />
-                                </svg>
-                                <div class="ml-3">
-                                    {{$service->basic_plan_days}} days delivery
-                                </div>
-                            </div>
+                            @error('date')
+                                <p class="text-red-500 text-lg italic">{{ $message }}</p>
+                            @enderror
 
-                            <form
-                                action="{{ route('store.transaction', ['id' => $service->id, 'package' => 'basic']) }}"
-                                method="POST">
-                                @csrf
-                                <div class="flex place-content-center mt-5">
-                                    <button type="submit"
-                                        class="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-sm text-sm px-36 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 me-2 mb-2">
-                                        Continue
-                                    </button>
-                                </div>
-                            </form>
+                            @error('lama_sewa')
+                                <p class="text-red-500 text-lg italic">{{ $message }}</p>
+                            @enderror
+                            
+                            <div class="mx-4 mt-5 text-3xl font-bold underline" id="totalHargaContainer" style="display: none;">
+                                Total Harga: <span id="totalHarga"></span>
+                            </div>
+                            
+                            <input type="hidden" name="harga_total" id="harga_total">
+                            
+                            @if(auth()->check())
+                                @if(auth()->user()->isSeller())
+                                    <div>
+                                        Login atau registrasi sebagai pencari kos untuk melakukan transaksi
+                                    </div>
+                                    
+                                @elseif(auth()->user()->isAdmin())
+                                    <div>
+                                        Login atau registrasi sebagai pencari kos untuk melakukan transaksi
+                                    </div>
+                                @else
+                                    <div class="flex place-content-center mt-5">
+                                        <button type="submit"
+                                            class="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-sm text-sm px-36 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mx-4 mb-2">
+                                            Continue
+                                        </button>
+                                    </div>
+                                @endif
+                            @else
+                                    <div class="text-red-500 w-4/5 mx-4 mt-8 text-xl font-semibold">
+                                        Login atau registrasi sebagai pencari kos untuk melakukan transaksi
+                                    </div>
+                            @endif
+                            
+                            
 
                         </div>
-                        <div class="tab-content hidden" id="standardContent">
-                            <div class="flex px-5 font-semibold">
-                                <div class="w-1/2">
-                                    {{$service->standard_plan_title}}
-                                </div>
-                                <div class="w-1/2 flex justify-end">
-                                    ${{$service->standard_plan_price}}
-                                </div>
-                            </div>
-                            <div class="flex mt-5 px-5">
-                                <div class="w-80 text-justify">
-                                    {{$service->standard_plan_description}}
-                                </div>
-                            </div>
-
-                            <div class="mt-2 px-5 flex">
-                                <svg class="h-6 w-6 text-black" width="24" height="24" viewBox="0 0 24 24"
-                                    stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                    <circle cx="12" cy="12" r="9" />
-                                    <polyline points="12 7 12 12 15 15" />
-                                </svg>
-                                <div class="ml-3">
-                                    {{$service->standard_plan_days}} days delivery
-                                </div>
-                            </div>
-
-                            <form
-                                action="{{ route('store.transaction', ['id' => $service->id, 'package' => 'standard']) }}"
-                                method="POST">
-                                @csrf
-                                <div class="flex place-content-center mt-5">
-                                    <button type="submit"
-                                        class="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-sm text-sm px-36 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 me-2 mb-2">
-                                        Continue
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="tab-content hidden" id="premiumContent">
-                            <div class="flex px-5 font-semibold">
-                                <div class="w-1/2">
-                                    {{$service->premium_plan_title}}
-                                </div>
-                                <div class="w-1/2 flex justify-end">
-                                    ${{$service->premium_plan_price}}
-                                </div>
-                            </div>
-                            <div class="flex mt-5 px-5">
-                                <div class="w-80 text-justify">
-                                    {{$service->premium_plan_description}}
-                                </div>
-                            </div>
-
-                            <div class="mt-2 px-5 flex">
-                                <svg class="h-6 w-6 text-black" width="24" height="24" viewBox="0 0 24 24"
-                                    stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                    <circle cx="12" cy="12" r="9" />
-                                    <polyline points="12 7 12 12 15 15" />
-                                </svg>
-                                <div class="ml-3">
-                                    {{$service->premium_plan_days}} days delivery
-                                </div>
-                            </div>
-                            <form
-                                action="{{ route('store.transaction', ['id' => $service->id, 'package' => 'premium']) }}"
-                                method="POST">
-                                @csrf
-                                <div class="flex place-content-center mt-5">
-                                    <button type="submit"
-                                        class="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-sm text-sm px-36 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 me-2 mb-2">
-                                        Continue
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/datepicker.min.js"></script>
     <script>
-        // Add your JavaScript code here
-        document.addEventListener('DOMContentLoaded', function () {
-            // Get tabs and tab contents
-            const tabs = document.querySelectorAll('.tab');
-            const tabContents = document.querySelectorAll('.tab-content');
+       document.addEventListener('DOMContentLoaded', function () {
+        // Get references to the date input and select elements
+        var dateInput = document.getElementById('date');
+        var selectElement = document.getElementById('lama_sewa');
+        var totalHargaContainer = document.getElementById('totalHargaContainer');
+        var totalHargaInput = document.getElementById('harga_total');
+        // Add event listeners to both elements
+        dateInput.addEventListener('change', handleSelectionChange);
+        selectElement.addEventListener('change', handleSelectionChange);
 
-            // Display the Basic content by default
-            document.getElementById('basicContent').style.display = 'block';
+        function handleSelectionChange() {
+            // Get the selected value from the select element
+            var selectedOption = parseInt(selectElement.value);
 
-            // Add click event listener to each tab
-            tabs.forEach(function (tab) {
-                tab.addEventListener('click', function () {
-                    const tabId = this.getAttribute('data-tab');
+            // Get the date value (you may need to parse it into a format suitable for calculation)
+            var dateValue = dateInput.value;
 
-                    // Remove active class from all tabs
-                    tabs.forEach(function (tab) {
-                        tab.classList.remove('active');
-                        tab.classList.add('inactive');
-                    });
+            // Check if both date and bulan are selected
+            if (selectedOption && dateValue) {
+                // Perform your calculation based on the selected option and date value
+                // For this example, I'll just multiply the selected option by a constant value
+                var hargaPerBulan = {{$service->harga_per_bulan}};
+                var totalHarga = selectedOption * hargaPerBulan;
+                totalHargaInput.value = totalHarga;
 
-                    // Add active class to the clicked tab
-                    this.classList.remove('inactive');
-                    this.classList.add('active');
+                console.log(totalHarga);
+                // Display the calculated total harga
+                document.getElementById('totalHarga').innerText = 'Rp' + number_format(totalHarga, 0, ',', '.');
 
-                    // Hide all tab contents
-                    tabContents.forEach(function (content) {
-                        content.style.display = 'none';
-                    });
+                // Show the total harga container
+                totalHargaContainer.style.display = 'block';
+            } else {
+                // Hide the total harga container if either date or bulan is not selected
+                totalHargaContainer.style.display = 'none';
+            }
+        }
 
-                    // Show the selected tab content
-                    document.getElementById(tabId + 'Content').style.display = 'block';
-                });
-            });
-        });
+        // Function to format numbers
+        function number_format(number, decimals, decPoint, thousandsSep) {
+            decimals = decimals || 0;
+            number = parseFloat(number);
+
+            if (!decPoint || !thousandsSep) {
+                decPoint = '.';
+                thousandsSep = ',';
+            }
+
+            var roundedNumber = Math.round(Math.abs(number) * ('1e' + decimals)) + '';
+            var numbersString = decimals ? roundedNumber.slice(0, decimals * -1) : roundedNumber;
+            var decimalsString = decimals ? roundedNumber.slice(decimals * -1) : '';
+            var formattedNumber = "";
+
+            while (numbersString.length > 3) {
+                formattedNumber += thousandsSep + numbersString.slice(-3);
+                numbersString = numbersString.slice(0, -3);
+            }
+
+            return (number < 0 ? '-' : '') + numbersString + formattedNumber + (decimalsString ? (decPoint + decimalsString) : '');
+        }
+    });
     </script>
 
 </x-app-layout>

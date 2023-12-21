@@ -16,15 +16,13 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
 
-        $status = [
-            'cancelled',
-            'pending',
-            'completed',
+        $lama_sewa = [
+            1, 3, 6, 12
         ];
         
         return [
-            'quantity' => fake()->numberBetween(1,10),
-            'status' => fake()->randomElement($status),
+            'lama_sewa' => fake()->randomElement($lama_sewa),
+            'tanggal_mulai_sewa' => $this->faker->dateTimeBetween('-2 years', '-1 week')->format('Y-m-d'),
             'harga_total' => fake()->numberBetween(500000,1000000),
             'user_id' => fake()->numberBetween(1,100),
             'isReview' => fake()->randomElement([true, false]),

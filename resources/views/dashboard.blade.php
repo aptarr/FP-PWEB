@@ -103,7 +103,9 @@
                             <div class="border rounded-lg p-5 h-full">
                                 <img class="h-50 w-full object-cover rounded-md"
                                     src="{{ asset('images/gambar_1.jpg') }}" alt="">
-                                <h2 class="mt-2 text-xl text-stone-900">{{ $service->title }}</h2>
+                                    <a href="{{ route('service.show', ['id' => $service->id, 'user_id' => $service->user_id]) }}" class="text-decoration-none hover:underline">
+                                        <h2 class="mt-2 text-xl text-stone-900">{{ $service->title }}</h2>
+                                    </a>
                                 <div class="flex items-center mt-2 text-stone-900">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" data-slot="icon" class="w-6 h-6">
@@ -116,7 +118,7 @@
                                 </div>
 
                                 <p class="mt-2 text-stone-900 text-right text-2xl font-black">
-                                    Rp.{{ $service->harga_per_bulan }}
+                                Rp{{ number_format($service->harga_per_bulan, 0, ',', '.') }}
                                 </p>
 
                             </div>

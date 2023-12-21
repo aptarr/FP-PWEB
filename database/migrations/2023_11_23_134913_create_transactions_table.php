@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('quantity')->unsigned();
-            $table->string('status');
+            $table->integer('lama_sewa')->unsigned();
+            $table->string('tanggal_mulai_sewa');
             $table->integer('harga_total')->unsigned();
             $table->boolean('isReview');
             $table->foreignId('user_id')->constrained();

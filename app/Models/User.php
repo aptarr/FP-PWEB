@@ -12,6 +12,15 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function isSeller()
+    {
+        return $this->role === 'seller'; // Adjust this based on your actual role implementation
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin'; // Adjust this based on your actual role implementation
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -49,34 +58,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function usernotification()
-    {
-        return $this->hasMany(UserNotification::class);
-    }
-
     public function userreview()
     {
         return $this->hasMany(UserReview::class);
-    }
-
-    public function userlanguage()
-    {
-        return $this->hasMany(UserLanguage::class);
-    }
-
-    public function userskill()
-    {
-        return $this->hasMany(UserSkill::class);
-    }
-
-    public function usereducation()
-    {
-        return $this->hasMany(UserEducation::class);
-    }
-
-    public function usercertification()
-    {
-        return $this->hasMany(UserCertification::class);
     }
 
     public function user() {
@@ -85,10 +69,6 @@ class User extends Authenticatable
 
     public function transaction() {
         return $this->hasMany(Transaction::class);
-    }
-
-    public function wishlist() {
-        return $this->hasMany(Wishlist::class);
     }
 
     public function service() {

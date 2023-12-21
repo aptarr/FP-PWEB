@@ -47,7 +47,7 @@ Route::get('/services/{id}/{user_id}', [ServiceController::class, 'show'])->name
 Route::post('/searchfilter', [ServiceController::class, 'filter'])->name('service.filter');
 
 // Route for handling the transaction
-Route::post('/store-transaction/{id}/{package}', [TransactionController::class, 'storeTransaction'])
+Route::post('/store-transaction/{id}', [TransactionController::class, 'storeTransaction'])
     ->name('store.transaction');
 
 
