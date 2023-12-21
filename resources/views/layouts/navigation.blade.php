@@ -23,24 +23,36 @@
 
             </div>
             <div class="hidden lg:flex  lg:gap-x-12 lg:flex-1 lg:justify-end">
-                <a href="#" class="text-sm font-semibold leading-6 text-gray-900 px-3 py-2">Cari Kost?</a>
-                <a href="#" class="text-sm font-semibold leading-6 text-gray-900 px-3 py-2">Features</a>
+                <a href="#rekomendasi" class="text-sm font-semibold leading-6 text-gray-900 px-3 py-2">Cari Kost?</a>
                 @guest
-                <div>
-                    <a href="{{ route('login') }}">
-                        <button type="button" class="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 me-2 mb-2">
-                            Login
+                <x-dropdown align="right" width="48">
+                    <x-slot name="trigger">
+                        <button
+                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                            <div class="text-sm font-semibold leading-6 text-gray-900">Guest</div>
+
+                            <div class="ms-1">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
                         </button>
-                    </a>
-                    <a href="{{ route('register') }}">
-                        <button type="button" class="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 me-2 mb-2">
-                            Register
-                        </button>
-                    </a>
-                
-                </div>
+                    </x-slot>
+
+                    <x-slot name="content">
+                        <x-dropdown-link :href="route('login')">
+                            {{ __('Login') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('register')">
+                            {{ __('Register') }}
+                        </x-dropdown-link>
+                    </x-slot>
+                </x-dropdown>
                 @endguest
-                @auth  
+                @auth
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
@@ -58,16 +70,16 @@
                         </button>
                     </x-slot>
 
-                     
+
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.show')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
                         @unless(auth()->user()->isSeller)
-                            <x-dropdown-link :href="route('get.myorder')">
-                                {{ __('My Transaction') }}
-                            </x-dropdown-link>
+                        <x-dropdown-link :href="route('get.myorder')">
+                            {{ __('My Transaction') }}
+                        </x-dropdown-link>
                         @endif
 
 
@@ -76,7 +88,7 @@
                             {{ __('Manage Selling Order') }}
                         </x-dropdown-link>
                         @endif
-                        
+
                         @if(auth()->user()->isAdmin)
                         <x-dropdown-link :href="route('admin.show', ['id' => auth()->user()->id])">
                             {{ __('Admin Page') }}
@@ -130,8 +142,8 @@
                                 Kost?</a>
                             <a href="#"
                                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
-                               
-                                @auth 
+
+                            @auth
                             <x-dropdown align="left" width="48">
                                 <x-slot name="trigger">
                                     <button
@@ -191,7 +203,7 @@
                                     </form>
                                 </x-slot>
                             </x-dropdown>
-                            @endauth 
+                            @endauth
                         </div>
                         <div class="py-6">
                             <a href="#"

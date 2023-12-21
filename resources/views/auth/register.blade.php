@@ -48,7 +48,7 @@
                 </label>
                 <label class="inline-flex items-center ml-6">
                     <input type="radio" name="user_type" value="1" class="form-radio" />
-                    <span class="ml-2">{{ __('Penyewa Kos') }}</span>
+                    <span class="ml-2">{{ __('Pemilik Kos') }}</span>
                 </label>
             </div>
         </div>
@@ -56,7 +56,7 @@
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+                {{ __('Already Have Account?') }}
             </a>
 
             <x-primary-button class="ms-4">

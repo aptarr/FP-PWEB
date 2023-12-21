@@ -43,7 +43,7 @@
             <div class="flex">
                 <div class="grid grid-cols-1 sm:grid-cols-2 w-full sm:w-8/12 mx-auto">
                     <div class="flex items-center col-span-2 sm:col-span-1 mx-auto">
-                        <div class="text-3xl font-bold text-stone-900">Rekomendasi kos di</div>
+                        <div class="text-3xl font-bold text-stone-900" id="rekomendasi">Rekomendasi kos di</div>
                         <div class="relative ml-2" id="dropdownButton">
                             <div onclick="toggleDropdown()" id="dropdownButtonContent"
                                 class="border-solid border-stone-900 border-[1px] px-5 py-2 rounded-lg cursor-pointer font-bold flex justify-between items-center bg-white shadow-sm">
@@ -103,7 +103,7 @@
 
                             <div class="border rounded-lg p-5 h-full">
                                 <img class="h-50 w-full object-cover rounded-md"
-                                            src="{{ asset('images/gambar_1.jpg') }}" alt="">
+                                    src="{{ asset('images/gambar_1.jpg') }}" alt="">
                                 <h2 class="mt-2 text-2xl font-bold text-stone-900">{{ $service->title }}</h2>
                                 <p class="mt-2 text-stone-900">
                                     Harga Rp.{{ $service->harga_per_bulan }}
@@ -125,12 +125,12 @@
                 Populer</div>
             <div class="container mx-auto flex flex-wrap items-center my-16">
                 @php
-                    // Convert the collection to an array and shuffle it
-                    $subcategoriesArray = $subcategories->toArray();
-                    shuffle($subcategoriesArray);
-                    
-                    // Take the first 4 elements from the shuffled array
-                    $randomSubcategories = array_slice($subcategoriesArray, 0, 4);
+                // Convert the collection to an array and shuffle it
+                $subcategoriesArray = $subcategories->toArray();
+                shuffle($subcategoriesArray);
+
+                // Take the first 4 elements from the shuffled array
+                $randomSubcategories = array_slice($subcategoriesArray, 0, 4);
                 @endphp
                 <div class="w-full max-w-sm bg-white overflow-hidden lg:w-1/4 p-3 pr-0 mx-auto">
                     <a href="{{ route('subcategory.show', ['subcategory' => $randomSubcategories[0]['subcategory_name'], 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}"
@@ -139,43 +139,50 @@
                             class="absolute inset-0 bg-black opacity-0 group-hover:opacity-60 transition-opacity rounded-md">
                         </div>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white text-5xl font-bold">{{$randomSubcategories[0]['subcategory_name']}}</span>
+                            <span
+                                class="text-white text-5xl font-bold">{{$randomSubcategories[0]['subcategory_name']}}</span>
                         </div>
                         <img class="h-full w-full object-cover rounded-md" src="{{ asset('images/gambar_1.jpg') }}"
                             alt="">
                     </a>
                 </div>
                 <div class="w-full max-w-sm bg-white overflow-hidden lg:w-1/4 p-3 pr-0 mx-auto">
-                    <a href="{{ route('subcategory.show', ['subcategory' => $randomSubcategories[1]['subcategory_name'], 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}" class="block relative h-50 w-full group">
+                    <a href="{{ route('subcategory.show', ['subcategory' => $randomSubcategories[1]['subcategory_name'], 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}"
+                        class="block relative h-50 w-full group">
                         <div
                             class="absolute inset-0 bg-black opacity-0 group-hover:opacity-60 transition-opacity rounded-md">
                         </div>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white text-5xl font-bold">{{$randomSubcategories[1]['subcategory_name']}}</span>
+                            <span
+                                class="text-white text-5xl font-bold">{{$randomSubcategories[1]['subcategory_name']}}</span>
                         </div>
                         <img class="h-full w-full object-cover rounded-md" src="{{ asset('images/gambar_1.jpg') }}"
                             alt="">
                     </a>
                 </div>
                 <div class="w-full max-w-sm bg-white overflow-hidden lg:w-1/4 p-3 pr-0 mx-auto">
-                    <a href="{{ route('subcategory.show', ['subcategory' => $randomSubcategories[2]['subcategory_name'], 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}" class="block relative h-50 w-full group">
+                    <a href="{{ route('subcategory.show', ['subcategory' => $randomSubcategories[2]['subcategory_name'], 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}"
+                        class="block relative h-50 w-full group">
                         <div
                             class="absolute inset-0 bg-black opacity-0 group-hover:opacity-60 transition-opacity rounded-md">
                         </div>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white text-5xl font-bold">{{$randomSubcategories[2]['subcategory_name']}}</span>
+                            <span
+                                class="text-white text-5xl font-bold">{{$randomSubcategories[2]['subcategory_name']}}</span>
                         </div>
                         <img class="h-full w-full object-cover rounded-md" src="{{ asset('images/gambar_1.jpg') }}"
                             alt="">
                     </a>
                 </div>
                 <div class="w-full max-w-sm bg-white overflow-hidden lg:w-1/4 p-3 pr-0 mx-auto">
-                    <a href="{{ route('subcategory.show', ['subcategory' => $randomSubcategories[3]['subcategory_name'], 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}" class="block relative h-50 w-full group">
+                    <a href="{{ route('subcategory.show', ['subcategory' => $randomSubcategories[3]['subcategory_name'], 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}"
+                        class="block relative h-50 w-full group">
                         <div
                             class="absolute inset-0 bg-black opacity-0 group-hover:opacity-60 transition-opacity rounded-md">
                         </div>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-white text-5xl font-bold">{{$randomSubcategories[3]['subcategory_name']}}</span>
+                            <span
+                                class="text-white text-5xl font-bold">{{$randomSubcategories[3]['subcategory_name']}}</span>
                         </div>
                         <img class="h-full w-full object-cover rounded-md" src="{{ asset('images/gambar_1.jpg') }}"
                             alt="">
@@ -253,7 +260,7 @@
                 // You can now use the selected value in your component or redirect as needed.
                 // For example, you can store the value in a variable or update a component state.
                 console.log('Selected Value:', value);
-                
+
                 const allElements = document.querySelectorAll('.kost');
                 allElements.forEach(element => {
                     element.style.display = 'none';
@@ -264,15 +271,15 @@
                 selectedElements.forEach(element => {
                     element.style.display = 'block'; // Or any other display property you want
                 });
-                            
-                
+
+
 
                 // Close the dropdown after selection (optional)
                 toggleDropdown();
-     
+
             }
 
-    
+
 
         </script>
 </x-app-layout>
