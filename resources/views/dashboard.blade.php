@@ -98,7 +98,7 @@
                     <ul id="slider" class="flex w-full">
 
                         @foreach($services as $service)
-                        <li class="p-5">
+                        <li class="p-5 kost {{ $service->subcategory->subcategory_name }}">
 
                             <div class="border rounded-lg p-5 h-full">
                                 <img class="h-50 w-full object-cover rounded-md"
@@ -253,64 +253,25 @@
                 // For example, you can store the value in a variable or update a component state.
                 console.log('Selected Value:', value);
                 
+                const allElements = document.querySelectorAll('.kost');
+                allElements.forEach(element => {
+                    element.style.display = 'none';
+                });
+
+                // Show only the selected subcategory
+                const selectedElements = document.querySelectorAll(`.kost.${value}`);
+                selectedElements.forEach(element => {
+                    element.style.display = 'block'; // Or any other display property you want
+                });
+                            
+                
 
                 // Close the dropdown after selection (optional)
                 toggleDropdown();
-                //console.log(id);
-                if (id !== null && id !== undefined) {
-                    fetchServices(id);
-                }
+     
             }
 
-            // function selectOption(subcategoryName, subcategoryId) {
-            // // Update the dropdown display or perform other actions if needed
+    
 
-            // // Fetch services based on the selected subcategory
-            //     fetchServices(subcategoryId);
-            // }
-
-            async function fetchServices(subcategoryId) {
-              
-                    const response = await fetch(`/api/filter-service/${subcategoryId}`);
-                    
-                   
-                    const services = await response.json();
-                    
-                    console.log(services);
-                    // Update the displayed services
-                    updateServices(services);
-            
-            }
-
-
-            function updateServices(services) {
-                // Update the DOM to display the fetched services
-                // Replace the existing services with the new ones
-                const servicesContainer = document.getElementById('slider');
-                servicesContainer.innerHTML = '';
-
-                // Limit the number of services to display to 10
-                const servicesToDisplay = services.slice(0, 10);
-
-                servicesToDisplay.forEach(service => {
-                    const listItem = document.createElement('li');
-                    listItem.classList.add('p-5');
-                    listItem.innerHTML = `
-                        <div class="border rounded-lg p-5 h-full">
-                        <img class="h-50 w-full object-cover rounded-md"
-                                    src="{{ asset('images/gambar_1.jpg') }}" alt="">
-                            <h2 class="mt-2 text-2xl font-bold text-stone-900">${service.title}</h2>
-                            <p class="mt-2 text-stone-900">
-                                Harga Rp.${service.harga_per_bulan}
-                            </p>
-                            <p class="mt-2 text-stone-900">
-                                Lokasi : ${service.subcategory.subcategory_name}
-                            </p>
-                        </div>
-                    `;
-                    servicesContainer.appendChild(listItem);
-                });
-
-            }
         </script>
 </x-app-layout>
