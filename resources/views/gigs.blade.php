@@ -468,12 +468,12 @@
                             
                             @if(auth()->check())
                                 @if(auth()->user()->isSeller())
-                                    <div>
+                                    <div class="text-red-500 w-4/5 mx-4 mt-8 text-xl font-semibold">
                                         Login atau registrasi sebagai pencari kos untuk melakukan transaksi
                                     </div>
                                     
                                 @elseif(auth()->user()->isAdmin())
-                                    <div>
+                                    <div class="text-red-500 w-4/5 mx-4 mt-8 text-xl font-semibold">
                                         Login atau registrasi sebagai pencari kos untuk melakukan transaksi
                                     </div>
                                 @else

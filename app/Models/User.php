@@ -14,12 +14,12 @@ class User extends Authenticatable
 
     public function isSeller()
     {
-        return $this->role === 'seller'; // Adjust this based on your actual role implementation
+        return $this->isSeller === 1; // Adjust this based on your actual role implementation
     }
 
     public function isAdmin()
     {
-        return $this->role === 'admin'; // Adjust this based on your actual role implementation
+        return $this->isAdmin === 1; // Adjust this based on your actual role implementation
     }
     /**
      * The attributes that are mass assignable.

@@ -67,11 +67,11 @@
 
                     <div class="p-5 flex justify-end col-span-1 mx-auto mt-4 sm:mt-0">
                         <div class="inline-flex rounded-md right-0">
-                            <a href="https://github.com/themesberg/flowbite/blob/main/content/components/button-group.md"
-                                rel="noopener nofollow noreferrer"
-                                class="inline-flex items-center justify-center h-9 mr-3 px-3 text-xs font-medium text-stone-900 bg-white border border-stone-900 rounded-lg focus:outline-none hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-stone-900">Lihat
-                                Semua
-                            </a>
+                                <a href="{{ route('subcategory.show', ['subcategory' => 'Jakarta', 'budgetLower' => 0, 'budgetUpper' => 1000000, 'time' => 999]) }}"
+                                    id="lihatSemuaLink" rel="noopener nofollow noreferrer"
+                                    class="inline-flex items-center justify-center h-9 mr-3 px-3 text-xs font-medium text-stone-900 bg-white border border-stone-900 rounded-lg focus:outline-none hover:bg-gray-100 focus:z-10 focus:ring-2 focus:ring-stone-900">
+                                    Lihat Semua
+                                </a>
 
                             <button onclick="next()"
                                 class="px-4 py-2 text-sm font-medium text-stone-900 bg-white border border-stone-900 rounded-s-lg hover:bg-gray-100  focus:z-10 focus:ring-2 focus:ring-stone-900 focus:text-stone-900">
@@ -264,30 +264,37 @@
             }
 
             function selectOption(value, id) {
-                const selectedOptionText = document.getElementById('selectedOptionText');
-                selectedOptionText.textContent = value;
+    const selectedOptionText = document.getElementById('selectedOptionText');
+    selectedOptionText.textContent = value;
 
-                // You can now use the selected value in your component or redirect as needed.
-                // For example, you can store the value in a variable or update a component state.
-                console.log('Selected Value:', value);
+    // You can now use the selected value in your component or redirect as needed.
+    // For example, you can store the value in a variable or update a component state.
+    console.log('Selected Value:', value);
 
-                const allElements = document.querySelectorAll('.kost');
-                allElements.forEach(element => {
-                    element.style.display = 'none';
-                });
+    const allElements = document.querySelectorAll('.kost');
+    allElements.forEach(element => {
+        element.style.display = 'none';
+    });
 
-                // Show only the selected subcategory
-                const selectedElements = document.querySelectorAll(`.kost.${value}`);
-                selectedElements.forEach(element => {
-                    element.style.display = 'block'; // Or any other display property you want
-                });
+    // Show only the selected subcategory
+    const selectedElements = document.querySelectorAll(`.kost.${value}`);
+    selectedElements.forEach(element => {
+        element.style.display = 'block'; // Or any other display property you want
+    });
 
+    var lihatSemuaLink = document.getElementById('lihatSemuaLink');
+    if (lihatSemuaLink) {
+        var url = "{{ route('subcategory.show', ['subcategory' => ':subcategory', 'budgetLower' => ':budgetLower', 'budgetUpper' => ':budgetUpper', 'time' => ':time']) }}";
+        url = url.replace(':subcategory', value).replace(':budgetLower', 0).replace(':budgetUpper', 1000000).replace(':time', 999);
+        
+        console.log(url);
+        lihatSemuaLink.href = url;
+    }
 
+    // Close the dropdown after selection (optional)
+    toggleDropdown();
+}
 
-                // Close the dropdown after selection (optional)
-                toggleDropdown();
-
-            }
 
 
 
